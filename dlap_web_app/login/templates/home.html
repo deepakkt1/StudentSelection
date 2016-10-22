@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Welcome to Discovery Learning Program{% endblock %}
+{% block head %}Welcome to Discovery Learning Program{% endblock %}
+{% block content %}
+{% if user.last_name == "Student" %}
+    <p>Welcome {{ user.username }} !!!</p>
+    <p>You are a {{ user.last_name }} !!!</p>
+<div class="jumbotron">
+  <h1>Hello</h1>
+  <p>You are on your Dashboard</p>
+</div>
+ {% elif user.last_name == "Faculty" %} 
+<p>Welcome {{ user.username }} !!!</p>
+    <p>You are a {{ user.last_name }} !!!</p>
+ {% elif user.last_name == "Faculty" %} 
+<p>Welcome {{ user.username }} !!!</p>
+    <p>You are a {{ user.last_name }} !!!</p>
+ {% else %} 
+<p>Welcome {{ user.username }} !!!</p>
+    <p>You should not be here!!!</p>
+
+{% endif %}
+    <a href="/logout/">Logout</a>
+{% endblock %}
