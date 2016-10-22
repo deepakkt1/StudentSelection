@@ -2,16 +2,25 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 from django.views.decorators.csrf import csrf_exempt
-
+from django.core.urlresolvers import reverse
+from django.views.generic import ListView
 
 from .models import Project
 
 # Create your views here.
 
 @csrf_exempt
-def project(request):
-    template = loader.get_template('submit/project.html')
+def project_form(request):
+    template = loader.get_template('submit/project_form.html')
     return HttpResponse(template.render(request))
+
+def project(request, project_id):
+	project = Project.objects.get(pk=project_id)
+	return render(request, 'submit/project.html', {'project': project})
+
+class project_list(ListView):
+	model = Project    
+ 	template_name = 'submit/project_list.html'
 
 @csrf_exempt
 def submit(request):
@@ -80,5 +89,6 @@ def submit(request):
 	)
 
 	project.save()
-	return HttpResponse("SUCCESS")
+        template = loader.get_template('submit/home.html')
+        return HttpResponse(template.render(request))
 

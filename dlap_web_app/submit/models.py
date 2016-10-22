@@ -54,3 +54,10 @@ class Project(models.Model):
 	speed_type = models.CharField(max_length=255)
 	account_contact = models.CharField(max_length=255)
 	eng_dev_communities = models.CharField(max_length=255)
+
+	def __str__(self):
+		return ' '.join([
+				self.primary_first_name,
+				self.primary_last_name,
+				self.primary_email,
+			])

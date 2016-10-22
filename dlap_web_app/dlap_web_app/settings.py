@@ -31,6 +31,7 @@ DEBUG = True
 INSTALLED_APPS = [
     'login',
     'submit',
+    'student',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
