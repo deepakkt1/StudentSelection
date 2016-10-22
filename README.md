@@ -6,4 +6,4 @@ For this submission we have created a web app which accepts user input. The form
 
 Homework4 - 
 
-For this submission, we have created a Faculty Project submission page with fields validation. If user submits blank form, the Javascript throws alert saying mandatory fields are missing. The Student Application page is created to get student detials related to Discovery learning program. Trello story board is updated with relevant tasks we are working on, done, and to-do.
+For this submission, we have created a Faculty Project submission page with fields validation. If user submits blank form, the Javascript throws alert saying mandatory fields are missing. The Student Application page is created to get student detials related to Discovery learning program. Trello story board is updated with relevant tasks we are working on, done, and to-do. Burn down chart has been uploaded with relevant tasks.
