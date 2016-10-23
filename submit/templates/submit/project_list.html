@@ -29,7 +29,7 @@
 
 				<div>
 					{% for project in object_list %}
-{% if project.app_title  %}
+						{% if project.app_title  %}
 
 						<div class="panel panel-default" id="grad-student-info">
 			    			<div class="panel-heading" align="center">{{ project.app_title }} {{ project.id }}</div>
@@ -52,11 +52,12 @@
 			    			</div>
 			    			</div>
 						</div>
-{% endif %}
+						{% endif %}
 				 	{% endfor %}
 				
-			</div>
-		</div>
+		      	</div>
+		 </div>
+	</div>
 	</body>
 </html>
 
