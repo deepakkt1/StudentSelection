@@ -29,8 +29,9 @@
 
 				<div>
 					{% for project in object_list %}
-						<div class="panel panel-default" id="grad-student-info">
 {% if project.app_title  %}
+
+						<div class="panel panel-default" id="grad-student-info">
 			    			<div class="panel-heading" align="center">{{ project.app_title }} {{ project.id }}</div>
 				    		<div class="panel-body">
 								<div class="contol-label form-group">
@@ -49,10 +50,11 @@
 									<a href="/submit/{{ project.id }}"><button class="btn btn-primary btn-large">View Full Project Details</button></a>
 								</div>
 			    			</div>
-			    		</div>
+			    			</div>
+						</div>
 {% endif %}
 				 	{% endfor %}
-				</div>
+				
 			</div>
 		</div>
 	</body>
