@@ -28,7 +28,7 @@
 {% if listofproj.count > 0 %}
 
 {% for project in listofproj %}
-
+{% if project.app_title %}
 <div class="panel panel-default" id="grad-student-info">
 				    			<div class="panel-heading" align="center">{{ project.app_title }} 
 							</div>
@@ -50,6 +50,7 @@
 								</div>
 			    			</div>
 			    			</div>
+{% endif %}
 {% endfor %}
 
 {% else %}
