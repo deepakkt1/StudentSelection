@@ -26,10 +26,10 @@
 			</div>
 			<div class="body">
 
-				<h1 align="center">Available Projects by all departments</h1>
+				<h1 align="center">Available Projects by all majors</h1>
 <p>[Note: If you don't find a department listed here, it means the respective department hasn't offered project yet!]</p>
 {% for project in object_list %}
-{% if 'AES' in project.primary_faculty_dept %}
+{% if 'Aerospace Engineering' in project.recruit_fields   %}
 <h2><a href="#AES">Aerospace Engineering Sciences</a></h2>
 {% endif %}
 {% if project.primary_faculty_dept == 'APPM'  %}

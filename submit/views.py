@@ -4,7 +4,7 @@ from django.template import loader
 from django.views.decorators.csrf import csrf_exempt
 from django.core.urlresolvers import reverse
 from django.views.generic import ListView
-
+from django.shortcuts import render_to_response
 from .models import Project
 
 # Create your views here.
@@ -14,13 +14,52 @@ def project_form(request):
     template = loader.get_template('submit/project_form.html')
     return HttpResponse(template.render(request))
 
+
+@csrf_exempt
+def showpage(request):
+    template = loader.get_template('submit/bytitle.html')
+    return HttpResponse(template.render(request))
+
 def project(request, project_id):
 	project = Project.objects.get(pk=project_id)
 	return render(request, 'submit/project.html', {'project': project})
+@csrf_exempt
+def projectbydept(request):
+	search_text = request.POST.get('title','')
+	listofproj = []	
+	listofproj = Project.objects.filter(app_title__contains=search_text)
+	return render_to_response('submit/ajax_search.html',{'listofproj':listofproj})
+
+@csrf_exempt
+def projectbyfaculty(request):
+	search_text = request.POST.get('facultyname','')
+	listofproj = []	
+	listofproj = Project.objects.filter(primary_first_name__contains=search_text) | Project.objects.filter(primary_last_name__contains=search_text)
+	return render_to_response('submit/ajax_search.html',{'listofproj':listofproj})
+
+@csrf_exempt
+def projectbymajor(request):
+	search_text = request.POST.get('major','')
+	listofproj = []	
+	listofproj = Project.objects.filter(recruit_fields__contains=search_text)
+	return render_to_response('submit/ajax_search.html',{'listofproj':listofproj})
+
+@csrf_exempt
+def projectbyfacultydept(request):
+	search_text = request.POST.get('major','')
+	listofproj = []	
+	listofproj = Project.objects.filter(primary_faculty_dept__contains=search_text)
+	return render_to_response('submit/ajax_search.html',{'listofproj':listofproj})
 
 class project_list(ListView):
 	model = Project    
  	template_name = 'submit/project_list.html'
+
+class project_listmajor(ListView):
+	#template = loader.get_template('submit/project_listmajor.html')
+	#return HttpResponse(template.render(request))
+	model = Project    
+	template_name = 'submit/project_listmajor.html'
 
 @csrf_exempt
 def submit(request):
