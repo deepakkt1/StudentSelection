@@ -41,14 +41,20 @@ def projectbyfaculty(request):
 def projectbymajor(request):
 	search_text = request.POST.get('major','')
 	listofproj = []	
-	listofproj = Project.objects.filter(recruit_fields__contains=search_text)
+	if (search_text == 'All'):
+		listofproj = Project.objects.all()	
+	else:	
+		listofproj = Project.objects.filter(recruit_fields__contains=search_text)
 	return render_to_response('submit/ajax_search.html',{'listofproj':listofproj})
 
 @csrf_exempt
 def projectbyfacultydept(request):
 	search_text = request.POST.get('major','')
 	listofproj = []	
-	listofproj = Project.objects.filter(primary_faculty_dept__contains=search_text)
+	if (search_text == 'All'):
+		listofproj = Project.objects.all()	
+	else:	
+		listofproj = Project.objects.filter(primary_faculty_dept__contains=search_text)
 	return render_to_response('submit/ajax_search.html',{'listofproj':listofproj})
 
 class project_list(ListView):
