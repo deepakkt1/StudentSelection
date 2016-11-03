@@ -14,7 +14,7 @@
 			  <div class="jumbotron">
 			  	<div class="row">
 				  	<div class="col-sm-3">
-				  		<img src="http://www.colorado.edu/activelearningprogram/profiles/express/themes/cusimple/logo.png" height="200" width="200">
+				  		<a href="https://dlap-web-app.herokuapp.com/"><img src="http://www.colorado.edu/activelearningprogram/profiles/express/themes/cusimple/logo.png" height="200" width="200"></a>
 				  	</div>
 				  	<div class="col-sm-9">
 				  		<h1>Discovery Learning Apprenticeship Program</h1>
@@ -70,20 +70,20 @@
 					<span id="labelMessage2" style="color:Red;font-weight:bold;"></span>
 				</div>
 				<div>
-					<form class="form-horizontal">
+					<form class="form-horizontal" action="/studentsubmit/" enctype="multipart/form-data" method="POST">
 						<div class="panel panel-default" id="demographic-info">
 					    	<div class="panel-heading">Demographic Information</div>
 				    		<div class="panel-body" >
 								<div class="contol-label form-group">
 									<label for="first_name" class="col-sm-3"><span style="color: #ff0000">*</span>First Name:</label>
 									<div class="col-sm-8">
-										<input required type="text" class="form-control" id="first_name">
+										<input required type="text" name="primary_first_name" class="form-control" id="first_name">
 									</div>
 								</div>
 								<div class="contol-label form-group">
 									<label for="last_name" class="col-sm-3"><span style="color: #ff0000">*</span>Last Name:</label>
 									<div class="col-sm-8">
-										<input required type="text" class="form-control" id="last_name">
+										<input required type="text" name="primary_last_name" class="form-control" id="last_name">
 									</div>
 								</div>
 								<div class="control-label form-group" >
@@ -97,25 +97,26 @@
 									<label for="ethnic_radio" class="col-sm-3" align = left>Ethnicity (check all that apply):</label>
 									<div class="radio col-sm-8" id="ethnic_radio" align = left>
 										<div class="checkbox">
-											<label><input type="checkbox" value="">American Indian or Alaskan Native</label>
+											<label><input type="checkbox" name="ethnic_type" value="AN">American Indian or Alaskan Native</label>
 										</div>
 										<div class="checkbox">
-											<label><input type="checkbox" value="">Black or African-American</label>
+											<label><input type="checkbox" name="ethnic_type" value="BA">Black or African-American</label>
 										</div>
 										<div class="checkbox">
-											<label><input type="checkbox" value="" disabled>Native Hawaiian or Pacific Islander</label>
+											<label><input type="checkbox" name="ethnic_type" value="NHPS" >Native Hawaiian or Pacific Islander</label>
 										</div>
 										<div class="checkbox">
-											<label><input type="checkbox" value="" disabled>Asian</label>
+											<label><input type="checkbox" name="ethnic_type" value="AS" >Asian</label>
 										</div>
 										<div class="checkbox">
-											<label><input type="checkbox" value="" disabled>White</label>
+											<label><input type="checkbox" name="ethnic_type" value="WH" >White</label>
 										</div>
 										<div class="checkbox">
-											<label><input type="checkbox" value="" disabled>Other</label>
+											<label><input type="checkbox" name="ethnic_type" value="OTH" >Other</label>
 										</div>
 										<div class="checkbox">
-											<label><input type="checkbox" value="" disabled>Do Not Wish to Provide</label>
+											<label><input type="checkbox" name="ethnic_type" value="DNW"
+>Do Not Wish to Provide</label>
 										</div>
 									</div>
 								</div>
@@ -127,19 +128,19 @@
 					    		<div class="control-label form-group">
 									<label for="bldr_addr" class="col-sm-3" align=  left><span style="color: #ff0000">*</span>Boulder Street Address:</label>
 									<div class="col-sm-8">
-										<textarea class="form-control" rows="5" id="bldr_addr"></textarea>
+										<textarea class="form-control" rows="5" name="bldr_addr" id="bldr_addr"></textarea>
 									</div>
 								</div>
 								<div class="contol-label form-group">
 									<label for="bldr_phone_number" class="col-sm-3"><span style="color: #ff0000">*</span>Phone Number:</label>
 									<div class="col-sm-8">
-										<input type="tel" pattern = "^\d{10}$" placeholder="XXXXXXXXXX (all numbers) class="form-control" id="bldr_phone_number">
+										<input type="tel" pattern = "^\d{10}$" placeholder="XXXXXXXXXX (all numbers) class="form-control" name="bldr_phone_number" id="bldr_phone_number">
 									</div>
 								</div>
 								<div class="contol-label form-group">
 									<label for="bldr_email" class="col-sm-3"><span style="color: #ff0000">*</span>Email:</label>
 									<div class="col-sm-8">
-										<input type="email" class="form-control" id="bldr_email">
+										<input type="email" class="form-control" name="bldr_email" id="bldr_email">
 									</div>
 								</div>
 				    		</div>
@@ -150,19 +151,19 @@
 				    			<div class="control-label form-group">
 									<label for="summer_addr" class="col-sm-3" align = left>Boulder Street Address:</label>
 									<div class="col-sm-8">
-										<textarea class="form-control" rows="5" id="summer_addr"></textarea>
+										<textarea class="form-control" rows="5" name="summer_addr" id="summer_addr"></textarea>
 									</div>
 								</div>
 								<div class="contol-label form-group">
 									<label for="summer_phone_number" class="col-sm-3">Phone Number:</label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control" id="summer_phone_number">
+										<input type="tel" pattern = "^\d{10}$" placeholder="XXXXXXXXXX (all numbers) class="form-control" name="summer_phone_number" id="summer_phone_number">
 									</div>
 								</div>
 								<div class="contol-label form-group">
 									<label for="summer_email" class="col-sm-3">Email:</label>
 									<div class="col-sm-8">
-										<input type="email" class="form-control" id="summer_email">
+										<input type="email" class="form-control" name="summer_email" id="summer_email">
 									</div>
 								</div>
 				    		</div>
@@ -176,13 +177,13 @@
 			    				<div class="contol-label form-group">
 									<label for="student_number" class="col-sm-3"><span style="color: #ff0000">*</span>Student Number:</label>
 									<div class="col-sm-8">
-										<input type="tel" pattern = "^\d{9}$" type="text" placeholder="XXXXXXXXX" id="student_number">
+										<input type="tel" pattern = "^\d{9}$" type="text" placeholder="XXXXXXXXX" name="student_number" id="student_number">
 									</div>
 								</div>
 		    					<div class="contol-label form-group">
 									<label for="primary_major_select" class="col-sm-3"><span style="color: #ff0000">*</span>Major:</label>
 									<div class="col-sm-8">
-				    					<select class="form-control" id="primary_major_select">
+				    					<select class="form-control" name="student_department" id="primary_major_select">
 											<option selected="selected" value="0">Please Select</option>
 											<option value="ASEN">Aerospace Engineering</option>
 											<option value="AMEN">Applied Mathematics</option>
@@ -204,7 +205,7 @@
 								<div class="contol-label form-group">
 									<label for="secondary_major_select" class="col-sm-3">Secondary Major (Do not include Minors):</label>
 									<div class="col-sm-8">
-				    					<select class="form-control" id="secondary_major_select">
+				    					<select class="form-control" name="secondary_major" id="secondary_major_select">
 											<option selected="selected" value="0">N/A</option>
 											<option value="ASEN">Aerospace Engineering</option>
 											<option value="AMEN">Applied Mathematics</option>
@@ -226,13 +227,13 @@
 								<div class="contol-label form-group">
 									<label for="gpa" class="col-sm-3" ><span style="color: #ff0000">*</span>GPA:</label>
 									<div class="col-sm-8">
-										<input type="text" placeholder="X.XXX" id="gpa">
+										<input type="text" name="gpa" placeholder="X.XXX" id="gpa">
 									</div>
 								</div>
 								<div class="contol-label form-group">
 									<label for="school_level_select" class="col-sm-3"><span style="color: #ff0000">*</span>Level in school as of next fall:</label>
 									<div class="col-sm-8">
-										<select class="form-control" id="school_level_select">
+										<select class="form-control" name="school_level_select" id="school_level_select">
 											<option value="0">Please Select</option>
 											<option value="Freshman">Freshman</option>
 											<option value="Sophomore">Sophomore</option>
@@ -246,7 +247,7 @@
 									<label for="grad_date_select" class="col-sm-3"><span style="color: #ff0000">*</span>Anticipated graduation date:</label>
 									<div id="grad_date_select">
 										<div class="col-sm-4">
-											<select class="form-control" id="month_select">
+											<select class="form-control" name="grad_date_select" id="month_select">
 												<option value="select">Month</option>
 												<option value="05">May</option>
 												<option value="08">August</option>
@@ -254,7 +255,7 @@
 											</select>
 										</div>
 										<div class="col-sm-4">
-											<select class="form-control" id="year_select">
+											<select class="form-control" name= "year_select" id="year_select">
 												<option value="select">Year</option>
 												<option value="2015">2015</option>
 												<option value="2016">2016</option>
@@ -270,8 +271,8 @@
 								<div class="control-label form-group">
 									<label for="relevent_exp_radio" class="col-sm-3">Do you have previous research experience:</label>
 									<div class="radio col-sm-8" id="relevent_exp_radio" align=left>
-										<label class="radio-inline"><input type="radio" name="optradio">Yes</label>
-										<label class="radio-inline"><input type="radio" name="optradio">No</label>
+										<label class="radio-inline"><input type="radio" name="optradio_research">Yes</label>
+										<label class="radio-inline"><input type="radio" name="optradio_research">No</label>
 									</div>
 								</div>
 				    		</div>
@@ -283,20 +284,20 @@
 									<label for="prev_app_radio" class="col-sm-3">Have you applied for a Discovery Learning Apprenticeship before?:</label>
 									<div class="radio col-sm-8" id="prev_app_radio" align = left>
 										<div>
-											<label class="radio-inline"><input type="radio" name="optradio">Yes</label>
+											<label class="radio-inline"><input type="radio" name="prev_app_radio">Yes</label>
 										</div>
 										<div>
-											<label class="radio-inline"><input type="radio" name="optradio">Not sure</label>
+											<label class="radio-inline"><input type="radio" name="prev_app_radio">Not sure</label>
 										</div>
 										<div>
-											<label class="radio-inline"><input type="radio" name="optradio">No</label>
+											<label class="radio-inline"><input type="radio" name="prev_app_radio">No</label>
 										</div>
 									</div>
 								</div>
 								<div class="control-label form-group">
 									<label for="fall_employment_textarea" class="col-sm-3">Other Fall Employment Planned:</label>
 									<div class="col-sm-8">
-										<textarea class="form-control" rows="5" id="fall_employment_textarea"></textarea>
+										<textarea class="form-control" rows="5" name="fall_employment_textarea" id="fall_employment_textarea"></textarea>
 									</div>
 								</div>
 								<div>
@@ -319,11 +320,11 @@
 										<div class="col-sm-8" align = left>
 											<select class="form-control" id="school_level_select">
 												<option value="0">Please Select</option>
-												<option value="Freshman">Freshman</option>
-												<option value="Sophomore">Sophomore</option>
-												<option value="Junior">Junior</option>
-												<option value="Senior">Senior</option>
-												<option value="5th year Senior">5th Year Senior</option>
+												{% for pro in project %}
+				{%  if pro.app_title %}								
+<option name = {{ pro.id }} value = {{ pro.id }}> {{ pro.app_title }}</option>
+{% endif %}
+{%  endfor %}	
 											</select>
 										</div>
 									</div>
@@ -332,11 +333,11 @@
 										<div class="col-sm-8">
 											<select class="form-control" id="school_level_select">
 												<option value="0">Please Select</option>
-												<option value="Freshman">Freshman</option>
-												<option value="Sophomore">Sophomore</option>
-												<option value="Junior">Junior</option>
-												<option value="Senior">Senior</option>
-												<option value="5th year Senior">5th Year Senior</option>
+												{% for pro in project %}
+				{%  if pro.app_title %}								
+<option name = {{ pro.id }} value = {{ pro.id }}> {{ pro.app_title }}</option>
+{% endif %}
+{%  endfor %}	
 											</select>
 										</div>
 									</div>
@@ -345,11 +346,11 @@
 										<div class="col-sm-8">
 											<select class="form-control" id="school_level_select">
 												<option value="0">Please Select</option>
-												<option value="Freshman">Freshman</option>
-												<option value="Sophomore">Sophomore</option>
-												<option value="Junior">Junior</option>
-												<option value="Senior">Senior</option>
-												<option value="5th year Senior">5th Year Senior</option>
+												{% for pro in project %}
+				{%  if pro.app_title %}								
+<option name = {{ pro.id }} value = {{ pro.id }}> {{ pro.app_title }}</option>
+{% endif %}
+{%  endfor %}	
 											</select>
 										</div>
 									</div>
@@ -357,12 +358,13 @@
 										<label for="school_level_select" class="col-sm-3" align = right>4:</label>
 										<div class="col-sm-8">
 											<select class="form-control" id="school_level_select">
-												<option value="0">Please Select</option>
-												<option value="Freshman">Freshman</option>
-												<option value="Sophomore">Sophomore</option>
-												<option value="Junior">Junior</option>
-												<option value="Senior">Senior</option>
-												<option value="5th year Senior">5th Year Senior</option>
+
+<option value="0">Please Select</option>
+												{% for pro in project %}
+				{%  if pro.app_title %}								
+<option name = {{ pro.id }} value = {{ pro.id }}> {{ pro.app_title }}</option>
+{% endif %}
+{%  endfor %}		
 											</select>
 										</div>
 									</div>
@@ -371,12 +373,12 @@
 										<div class="col-sm-8">
 											<select class="form-control" id="school_level_select">
 												<option value="0">Please Select</option>
-												<option value="Freshman">Freshman</option>
-												<option value="Sophomore">Sophomore</option>
-												<option value="Junior">Junior</option>
-												<option value="Senior">Senior</option>
-												<option value="5th year Senior">5th Year Senior</option>
-											</select>
+
+{% for pro in project %}
+				{%  if pro.app_title %}								
+<option name = {{ pro.id }} value = {{ pro.id }}> {{ pro.app_title }}</option>
+{% endif %}
+{%  endfor %}											</select>
 										</div>
 									</div>
 					    		</div>
@@ -385,13 +387,13 @@
 								<label for="background_chk_radio" class="col-sm-3">Have you had a background check yet (at CU)? If yes when? (Take your best guess if you aren't sure.)</label>
 								<div class="radio col-sm-8" id="background_chk_radio" align = left>
 									<div>
-										<label class="radio-inline"><input type="radio" name="optradio">Yes</label>
+										<label class="radio-inline"><input type="radio" name="background_chk_radio">Yes</label>
 									</div>
 									<div>
-										<label class="radio-inline"><input type="radio" name="optradio">Not sure</label>
+										<label class="radio-inline"><input type="radio" name="background_chk_radio">Not sure</label>
 									</div>
 									<div>
-										<label class="radio-inline"><input type="radio" name="optradio">No</label>
+										<label class="radio-inline"><input type="radio" name="background_chk_radio">No</label>
 									</div>
 								</div>
 							</div>
@@ -411,7 +413,7 @@
 							</div>
 							<div class="control-label form-group">
 								<label for="last_digits_ssn" class="col-sm-3"><span style="color: #ff0000">*</span>Last four digits of your Social Security Number: (this will only be used to acess your background check information)</label>
-								<div class="col-sm-8" id="last_digits_ssn" align = left>
+								<div class="col-sm-8" name="last_digits_ssn" id="last_digits_ssn" align = left>
 									<input required type="tel" pattern = "^\d{4}$" placeholder="XXXX (all numbers)" class="form-control">
 								</div>
 							</div>
@@ -464,13 +466,13 @@
 			                		
 										<label for="resume_btn" class="btn btn-default btn-file">
 											<span style="color: #ff0000">*</span>Select Resume
-											<input type="file" required class="form-control" id="resume_btn">
+											<input type="file" name="resume" class="form-control" id="resume_btn">
 										</label>
 									
 									
 										<label for="cover_letter_btn" class="btn btn-default btn-file" >
 											<span style="color: #ff0000">*</span>Select Cover Letter
-											<input type="file" required class="form-control" id="cover_letter_btn" >
+											<input type="file" name="coverletter" class="form-control" id="cover_letter_btn" >
 										</label>
 									
 			    				</div>

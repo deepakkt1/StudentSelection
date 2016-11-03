@@ -134,6 +134,4 @@ def submit(request):
 	)
 
 	project.save()
-        template = loader.get_template('submit/home.html')
-        return HttpResponse(template.render(request))
-
+        return HttpResponseRedirect("https://dlap-web-app.herokuapp.com/")
