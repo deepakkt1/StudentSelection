@@ -26,14 +26,14 @@ class Project(models.Model):
 	primary_last_name = models.CharField(max_length=255)
 	primary_phone_number = models.CharField(max_length=255) 
 	primary_email = models.EmailField()
-	primary_faculty_dept = models.CharField(max_length=12)
-	primary_eng_focus= models.CharField(max_length=3)
+	primary_faculty_dept = models.CharField(max_length=255)
+	primary_eng_focus= models.CharField(max_length=255)
 	
 	secondary_first_name = models.CharField(max_length=255)
 	secondary_last_name = models.CharField(max_length=255)
 	secondary_phone_number = models.CharField(max_length=255) 
 	secondary_email = models.EmailField()
-	secondary_faculty_dept = models.CharField(max_length=12)
+	secondary_faculty_dept = models.CharField(max_length=255)
 
 	grad_first_name = models.CharField(max_length=255)
 	grad_last_name = models.CharField(max_length=255)
