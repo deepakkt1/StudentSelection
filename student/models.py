@@ -13,7 +13,7 @@ class Student(models.Model):
 	bldr_email = models.EmailField()
 	student_number = models.CharField(max_length=255)
 	student_department = models.CharField(max_length=255)
-	gpa = models.CharField(max_length=12)
+	gpa = models.CharField(max_length=255)
 	school_level_select = models.CharField(max_length=255)
 	grad_date_select = models.CharField(max_length=255)
 	year_select = models.CharField(max_length=255)
