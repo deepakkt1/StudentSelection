@@ -21,6 +21,6 @@ from . import views
 urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^submit/', include('submit.urls')),
-    url(r'^student/', include('student.urls')),
+    url(r'^studentsubmit/', include('student.urls')),
     url(r'^admin/', admin.site.urls),
 ]
