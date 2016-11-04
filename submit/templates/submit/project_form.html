@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	{% load static %}
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="{% static 'submit/style.css' %}">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	</head>
+	<body>
+		<div class="container content">
+			<div class="header">
+			  <div class="jumbotron">
+			  	<div class="row">
+				  	<div class="col-sm-3">
+				  	<a href="https://dlap-web-app.herokuapp.com"><img src="http://www.colorado.edu/activelearningprogram/profiles/express/themes/cusimple/logo.png" height="200" width="200"></a>
+				  	</div>
+				  	<div class="col-sm-9">
+				  		<h1>Discovery Learning Apprenticeship Program</h1>
+				    	<p>UNIVERSITY OF COLORADO <strong>BOULDER</strong></p>
+				  	</div>
+			  	</div>
+			  </div>
+			</div>
+			<div class="body">
+				<div>
+					<p>
+						Thanks for your interest in submitting one or more projects for the 
+		                Discovery Learning Apprenticeship program. Please complete all required fields, 
+		                which are marked with a red asterisk (<span style="color: #ff0000">*</span>). You will 
+		                receive a confirmation after you enter your project indicating that your project 
+		                has been received. You may re-enter the application if you have more than one 
+		                project to advertise. If you have a correction or change to your project, if you 
+		                have trouble with this application or if you have questions, please contact 
+		                Sharon Anderson at
+						<a target="_blank" style="color: rgb(17, 85, 204); font-family: Calibri, sans-serif; font-size: 14.4444446563721px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);" href="mailto:sharon.e.anderson@colorado.edu">
+							sharon.e.anderson@colorado.edu</a>.
+					</p>
+				</div>
+				<div>
+					<form class="form-horizontal" action="/submit/" name="example_form" method="POST">
+				    	<div class="panel panel-default" id="faculty_member_info">
+				    		<div class="panel-heading">Faculty Member Information</div>
+				    		<div class="panel-body">
+								<div class="contol-label form-group">
+									<label for="first_name" class="col-sm-3"><span style="color: #ff0000">*</span>First Name:</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control" name="primary_first_name" id="first_name" required>
+									</div>
+								</div>
+								<div class="contol-label form-group">
+									<label for="last_name" class="col-sm-3"><span style="color: #ff0000">*</span>Last Name:</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control" name="primary_last_name" id="last_name" required>
+									</div>
+								</div>
+								<div class="contol-label form-group">
+									<label for="phone_number" class="col-sm-3"><span style="color: #ff0000">*</span>Phone Number:</label>
+									<div class="col-sm-8">
+										<input type="tel" pattern = "^\d{10}$" class="form-control" name="primary_phone_number" id="phone_number" placeholder="XXXXXXXXXX (all numbers)">
+									</div>
+								</div>
+								<div class="contol-label form-group">
+									<label for="email" class="col-sm-3"><span style="color: #ff0000">*</span>Email:</label>
+									<div class="col-sm-8">
+										<input type="email" class="form-control" name="primary_email" id="email" required>
+									</div>
+								</div>
+								<div class="control-label form-group">
+									<label for="faculty_dept" class="col-sm-3"><span style="color: #ff0000">*</span>Faculty Deparment or Program:</label>
+									<div class="col-sm-8">
+									  	<select class="form-control" name="primary_faculty_dept" id="faculty_dept" required>
+									    	<option value="">Please Select</option>
+											<option value="AES">Aerospace Engineering Sciences</option>
+											<option value="APPM">Applied Math</option>
+											<option value="CHBE">Chemical &amp; Biological Engineering</option>
+											<option value="CEAE">Civil, Environmental and Architectural Engineering</option>
+											<option value="CS">Computer Science</option>
+											<option value="ECEE">Electrical, Computer and Energy Engineering</option>
+											<option value="PHYS">Physics</option>
+											<option value="EVEN">Environmental Engineering</option>
+											<option value="ME">Mechanical Engineering</option>
+											<option value="CSGC">Colorado Space Grant</option>
+											<option value="EnEd">Engineering Education</option>
+											<option value="ATLS">ATLAS</option>
+										</select>
+									</div>
+								</div>
+								<div class="control-label form-group">
+									<label for="eng_focus_radio" class="col-sm-3"><span style="color: #ff0000">*</span>Does this project focus on Engineering for Developing Communities?</label>
+									<div class="radio col-sm-8" id="eng_focus_radio" align=left>
+										<label class="radio-inline"><input type="radio" name="primary_eng_focus" value="Yes" required>Yes</label>
+										<label class="radio-inline"><input type="radio" name="primary_eng_focus" value="No" required>No</label>
+									</div>
+								</div>
+							</div>
+					    </div>
+					    <div class="panel panel-default" id="second-faculty-member-info">
+			    			<div class="panel-heading">Secondary Faculty Member Information (Optional):</div>
+				    		<div class="panel-body">
+								<div class="contol-label form-group">
+									<label for="second_first_name" class="col-sm-3">First Name:</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control" name="secondary_first_name" id="second_first_name">
+									</div>
+								</div>
+								<div class="contol-label form-group">
+									<label for="last_name" class="col-sm-3">Last Name:</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control" name="secondary_last_name" id="last_name">
+									</div>
+								</div>
+								<div class="contol-label form-group">
+									<label for="phone_number" class="col-sm-3">Phone Number:</label>
+									<div class="col-sm-8">
+										<input type="tel" pattern = "^\d{10}$" placeholder="XXXXXXXXXX (all numbers)" class="form-control" name="secondary_phone_number" id="phone_number">
+									</div>
+								</div>
+								<div class="contol-label form-group">
+									<label for="email" class="col-sm-3">Email:</label>
+									<div class="col-sm-8">
+										<input type="email" class="form-control" name="secondary_email" id="email">
+									</div>
+								</div>
+								<div class="control-label form-group" >
+									<label for="faculty_dept_2" class="col-sm-3">Faculty Deparment or Program:</label>
+									<div class="col-sm-8">
+									  	<select class="form-control" name="secondary_faculty_dept" id="faculty_dept_2">
+											<option value="0">Please Select</option>
+											<option value="AES">Aerospace Engineering Sciences</option>
+											<option value="APPM">Applied Math</option>
+											<option value="CHBE">Chemical &amp; Biological Engineering</option>
+											<option value="CEAE">Civil, Environmental and Architectural Engineering</option>
+											<option value="CS">Computer Science</option>
+											<option value="ECEE">Electrical, Computer and Energy Engineering</option>
+											<option value="PHYS">Physics</option>
+											<option value="EVEN">Environmental Engineering</option>
+											<option value="ME">Mechanical Engineering</option>
+											<option value="CSGC">Colorado Space Grant</option>
+											<option value="EnEd">Engineering Education</option>
+											<option value="ATLS">ATLAS</option>
+										</select>
+									</div>
+								</div>
+							</div>
+			    		</div>
+			    		<div class="panel panel-default" id="grad-student-info">
+			    			<div class="panel-heading">Grad/Post Doc Student Info</div>
+				    		<div class="panel-body">
+								<div class="contol-label form-group">
+									<label for="grad_first_name" class="col-sm-3">First Name:</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control" name="grad_first_name" id="grad_first_name">
+									</div>
+								</div>
+								<div class="contol-label form-group">
+									<label for="last_name" class="col-sm-3">Last Name:</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control" name="grad_last_name" id="last_name">
+									</div>
+								</div>
+								<div class="contol-label form-group">
+									<label for="phone_number" class="col-sm-3">Phone Number:</label>
+									<div class="col-sm-8">
+										<input type="tel" pattern = "^\d{10}$" placeholder="XXXXXXXXXX (all numbers)" class="form-control" name="grad_phone_number" id="phone_number">
+									</div>
+								</div>
+								<div class="contol-label form-group">
+									<label for="email" class="col-sm-3">Email:</label>
+									<div class="col-sm-8">
+										<input type="email" class="form-control" name="grad_email" id="email">
+									</div>
+								</div>
+			    			</div>
+			    		</div>
+			    		<div class="panel panel-default" id="apprenticeship-info">
+			    			<div class="panel-heading">Apprenticeship Information</div>
+			    			<div class="panel-body">
+			    				<div class="control-label form-group">
+									<label for="app_title" class="col-sm-3"><span style="color: #ff0000">*</span>Title or Description of the Apprenticeship:</label>
+									<div class="col-sm-8">
+										<textarea class="form-control" rows="5" name="app_title" id="app_title" required></textarea>
+									</div>
+								</div>
+								<div class="contol-label form-group">
+									<label for="apprenticeship_url" class="col-sm-3">Apprenticeship Website URL:</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control" name="app_url" id="apprenticeship_url">
+									</div>
+								</div>
+								<div class="control-label form-group">
+									<label for="special_reqs" class="col-sm-3">Special Requirements for Applicants:</label>
+									<div class="col-sm-8">
+										<textarea class="form-control" rows="5" name="special_reqs" id="special_reqs"></textarea>
+									</div>
+								</div>
+								<div class="control-label form-group">
+									<label for="full_desc" class="col-sm-3"><span style="color: #ff0000">*</span>Full Apprenticeship Description:</label>
+									<div class="col-sm-8">
+										<textarea class="form-control" rows="5" name="full_desc" id="full_desc" required></textarea>
+									</div>
+								</div>
+								<div class="contol-label form-group">
+									<label for="apprenticeship_url" class="col-sm-3"><span style="color: #ff0000">*</span>From what areas do you wish to recruit students:</label>
+									<div class="col-sm-8" required>
+										<table id="major_list" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse;" >
+											<tbody>
+												<tr>
+													<td>
+														<input id="listStudMajor_0" type="checkbox" name="listStudMajor" value="Aerospace Engineering"  >
+														<label for="listStudMajor_0">Aerospace Engineering</label>
+													</td>
+													<td>
+														<input id="listStudMajor_7" type="checkbox" name="listStudMajor" value="Electrical Engineering"  >
+														<label for="listStudMajor_7">Electrical Engineering</label>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<input id="listStudMajor_1" type="checkbox" name="listStudMajor$1" value="Applied Mathematics" >
+														<label for="listStudMajor_1">Applied Mathematics</label>
+													</td>
+													<td>
+														<input id="listStudMajor_8" type="checkbox" name="listStudMajor$8" value="Electrical and Computer Engineering" >
+														<label for="listStudMajor_8">Electrical and Computer Engineering</label>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<input id="listStudMajor_2" type="checkbox" name="listStudMajor$2" value ="Architectural Engineering"  >
+														<label for="listStudMajor_2">Architectural Engineering</label>
+													</td>
+													<td>
+														<input id="listStudMajor_9" type="checkbox" name="listStudMajor$9" value = "Engineering Physics" >
+														<label for="listStudMajor_9">Engineering Physics</label>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<input id="listStudMajor_3" type="checkbox" name="listStudMajor$3" value = "Chemical Engineering" >
+														<label for="listStudMajor_3">Chemical Engineering</label>
+													</td>
+													<td>
+														<input id="listStudMajor_10" type="checkbox" name="listStudMajor$10" value = "Environmental Engineering" >
+														<label for="listStudMajor_10">Environmental Engineering</label>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<input id="listStudMajor_4" type="checkbox" name="listStudMajor$4" value = "Chemical &amp; Biological Engineering" >
+														<label for="listStudMajor_4">Chemical &amp; Biological Engineering</label>
+													</td>
+													<td>
+														<input id="listStudMajor_11" type="checkbox" name="listStudMajor$11" value = "Engineering Plus" >
+														<label for="listStudMajor_11">Engineering Plus</label>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<input id="listStudMajor_5" type="checkbox" name="listStudMajor$5" value = "Civil Engineering"  >
+														<label for="listStudMajor_5">Civil Engineering</label>
+													</td>
+													<td>
+														<input id="listStudMajor_12" type="checkbox" name="listStudMajor$12" value = "Mechanical Engineering"  >
+														<label for="listStudMajor_12">Mechanical Engineering</label>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<input id="listStudMajor_6" type="checkbox" name="listStudMajor$6" value = "Computer Science"  >
+														<label for="listStudMajor_6">Computer Science</label>
+													</td>
+													<td>
+														<input id="listStudMajor_13" type="checkbox" name="listStudMajor$13" value = "Technology, Arts and Media"  >
+														<label for="listStudMajor_13">Technology, Arts and Media</label>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div class="control-label form-group">
+									<label for="eng_focus_radio" class="col-sm-3"><span style="color: #ff0000">*</span>Amount of supervision required/interaction available</label>
+									<div class="radio col-sm-8" id="supervision_status_radio" align=left>
+										<div class="radio">
+											<label><input type="radio" name="supervision_status" value="Very little supervision; student will need to work largely independently" required>Very little supervision; student will need to work largely independently</label>
+										</div>
+										<div class="radio">
+											<label><input type="radio" name="supervision_status" value="Moderate amount of supervision and interaction with others" required>Moderate amount of supervision and interaction with others</label>
+										</div>
+										<div class="radio">
+											<label><input type="radio" name="supervision_status" value="Good deal of supervision; student will work as an integral part of a research team" required>Good deal of supervision; student will work as an integral part of a research team</label>
+										</div>
+									</div>
+								</div>
+								<div class="control-label form-group">
+									<label for="supervision_contact" class="col-sm-3"><span style="color: #ff0000">*</span>Supervision provided by</label>
+									<div class="radio col-sm-8" id="supervision_contact" align=left>
+										<div class="radio">
+											<label><input type="radio" name="supervision_contact" value="Supervision primarily by faculty supervisor" required>Supervision primarily by faculty supervisor</label>
+										</div>
+										<div class="radio">
+											<label><input type="radio" name="supervision_contact" value="Supervision primarily by graduate students" required>Supervision primarily by graduate students</label>
+										</div>
+										<div class="radio">
+											<label><input type="radio" name="supervision_contact" value="Supervision primarily a combination of faculty and graduate students" required>Supervision primarily a combination of faculty and graduate students</label>
+										</div>
+									</div>
+								</div>
+								<div class="control-label form-group">
+									<label for="work_nature" class="col-sm-3"><span style="color: #ff0000">*</span>Nature of work:</label>
+									<div class="radio col-sm-8" id="work_nature" align=left>
+										<div class="radio">
+											<label><input type="radio" name="work_nature" value="Nature of work is primarily theoretical, most work on paper/electronic medium" required>Nature of work is primarily theoretical, most work on paper/electronic medium</label>
+										</div>
+										<div class="radio">
+											<label><input type="radio" name="work_nature" value="Nature of work is primarily experimental, requiring hands-on work in a lab" required>Nature of work is primarily experimental, requiring hands-on work in a lab</label>
+										</div>
+										<div class="radio">
+											<label><input type="radio" name="work_nature" value="Nature of work is primarily field based, requiring hands-on work in the field" required>Nature of work is primarily field based, requiring hands-on work in the field</label>
+										</div>
+										<div class="radio">
+											<label><input type="radio" name="work_nature" value="Nature of work is primarily computer-related, involving coding/analysis" required>Nature of work is primarily computer-related, involving coding/analysis</label>
+										</div>
+										<div class="radio">
+											<label><input type="radio" name="work_nature" value="Nature of work is a combination of several types of work." required>Nature of work is a combination of several types of work.</label>
+										</div>
+										<div class="radio">
+											<label><input type="radio" name="work_nature" value="other, specify:">other, specify:</label>
+										</div>
+									</div>
+								</div>
+								<div class="control-label form-group">
+									<label for="prior_work" class="col-sm-3"><span style="color: #ff0000">*</span>Amount of prior work conducted in association with this project:</label>
+									<div class="radio col-sm-8" id="prior_work" align=left>
+										<div class="radio">
+											<label><input type="radio" name="prior_work" value="No prior work; student will be starting from basic idea" required>No prior work; student will be starting from basic idea</label>
+										</div>
+										<div class="radio">
+											<label><input type="radio" name="prior_work" value="Some prior work; student will build on work of others" required>Some prior work; student will build on work of others</label>
+										</div>
+										<div class="radio">
+											<label><input type="radio" name="prior_work" value="Well-established body of work; student will refine/improved upon efforts of others" required>Well-established body of work; student will refine/improved upon efforts of others</label>
+										</div>
+										<div class="radio">
+											<label><input type="radio" name="prior_work" value="other, specify:" required>other, specify:</label>
+										</div>
+									</div>
+								</div>
+								<div class="contol-label form-group">
+									<label for="desired_student" class="col-sm-3">Name of specific student desired: (if any) – be sure to ask them to apply!</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control" name="desired_student" id="desired_student">
+									</div>
+								</div>
+			    			</div>
+			    		</div>
+			    		<div class="panel panel-default" id="finances">
+			    			<div class="panel-heading">Financial Information</div>
+			    			<div class="panel-body">
+			    				<div class="contol-label form-group">
+									<label for="speed_type" class="col-sm-3"><span style="color: #ff0000">*</span>What speed type will you use for your 50% match of the funding?</label>
+									<div class="col-sm-8">
+										<input type="tel" pattern = "^\d{8}$" class="form-control" name="speed_type" id="speed_type" placeholder="XXXXXXXX (all numbers)" required>
+									</div>
+								</div>
+								<div class="contol-label form-group">
+									<label for="acct_contact" class="col-sm-3"><span style="color: #ff0000">*</span>Account contact for this project:</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control" name="account_contact" id="acct_contact" required>
+									</div>
+								</div>
+			    			</div>
+			    		</div>
+			    		<div class="panel panel-default" id="other">
+			    			<div class="panel-heading">Other</div>
+			    			<div class="panel-body">
+			    				<div class="control-label form-group">
+									<label for="eng_dev_communities" class="col-sm-3">Does this project focus on Engineering for Developing Communities?</label>
+									<div class="radio col-sm-8" id="eng_dev_communities" align=left>
+										<label class="radio-inline"><input type="radio" name="eng_dev_communities" value="Yes">Yes</label>
+										<label class="radio-inline"><input type="radio" name="eng_dev_communities" value="No">No</label>
+									</div>
+								</div>
+			    			</div>
+			    		</div>
+			    		<div class="button" align = center>
+					  		<button type="submit" class="btn btn-primary btn-large" >Submit</button>
+					  	</div>
+					</form>
+				</div>
+			</div>
+			<div class="footer">
+			</div>
+		</div>
+</body>
+</html>

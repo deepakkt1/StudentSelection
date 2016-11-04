@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{% load static %}
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="{% static 'submit/style.css' %}">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<div class="container content">
+			<div class="header">
+			  <div class="jumbotron">
+			  	<div class="row">
+				  	<div class="col-sm-3">
+				  	<a href="https://dlap-web-app.herokuapp.com"><img src="http://www.colorado.edu/activelearningprogram/profiles/express/themes/cusimple/logo.png" height="200" width="200"></a>
+				  	</div>
+				  	<div class="col-sm-9">
+				  		<h1>Discovery Learning Apprenticeship Program</h1>
+				    	<p>UNIVERSITY OF COLORADO <strong>BOULDER</strong></p>
+				  	</div>
+			  	</div>
+			  </div>
+			</div>
+			<div class="body">
+				<h1 align = center >Discovery Learning Program</h1>
+				<p>
+				Discovery Learning Apprenticeship Program
+				Whether helping develop new diagnostic techniques for heart disease, or detecting the effects of nuclear waste, discovery learning apprentices make the most of their time at CU Boulder by supplementing classroom instruction with real-world engineering experience.
+				</p>
+				<p>
+				Undergraduate engineering students in the apprenticeship program earn hourly wages while engaging in research with college faculty and graduate students. Positions are announced in early April, and applications are accepted through the end of April for apprenticeships during the following academic year.
+				</p>
+				<p>
+				As an undergraduate discovery learning apprentice, you’ll work alongside graduate students, post-doctoral fellows, faculty, and industry representatives, as collaborative partners on original research. We find that students bring a fresh perspective to the research team while also learning from their more experienced partners.
+				</p>
+				<h4 align = center>
+				Please click one of the links to continue your journey...</br></h4>
+				<h6 align = center>[Note: After successfull faculty project submission, you will be redirected to this page.]</h6>
+				<div align = center>
+					<a href="{% url 'project_form' %}"><button class="btn btn-primary btn-large">Start Faculty Project Form</button></a>
+					<a href="{% url 'student' %}"><button class="btn btn-primary btn-large">Start Student Application Form</button></a>
+<br/>
+				<div align = center>
+
+<form class="form-horizontal" action="/submit/listbyprimarydept/" name="example_form" method="POST">
+<select style="height:40px; width:420px; display: inline" class="form-control" name="major" id="major" required>
+									    	<option value="">Please Select</option>
+<option value="All">All departments</option>											
+<option value="AES">Aerospace Engineering Sciences</option>
+											<option value="APPM">Applied Math</option>
+											<option value="CHBE">Chemical &amp; Biological Engineering</option>
+											<option value="CEAE">Civil, Environmental and Architectural Engineering</option>
+											<option value="CS">Computer Science</option>
+											<option value="ECEE">Electrical, Computer and Energy Engineering</option>
+											<option value="PHYS">Physics</option>
+											<option value="EVEN">Environmental Engineering</option>
+											<option value="ME">Mechanical Engineering</option>
+											<option value="CSGC">Colorado Space Grant</option>
+											<option value="EnEd">Engineering Education</option>
+											<option value="ATLS">ATLAS</option>
+										</select><a href="{% url 'project_list' %}"><button style="height:40px; width:420px" class="btn btn-primary btn-large">View Available Projects by faculty primary department</button></a></form>
+
+<form class="form-horizontal" action="/submit/listbymajor/" name="example_form" method="POST">
+<select style="height:40px; width:420px; display: inline" class="form-control" name="major" id="major" required>
+									    	<option value="">Please Select</option>
+<option value="All">All departments</option>											
+											<option value="Aerospace Engineering">Aerospace Engineering Sciences</option>
+											<option value="Applied Math">Applied Math</option>
+											<option value="Chemical">Chemical &amp; Biological Engineering</option>
+											<option value="Civil">Civil, Environmental and Architectural Engineering</option>
+											<option value="Computer Science">Computer Science</option>
+											<option value="Electrical">Electrical, Computer and Energy Engineering</option>
+											<option value="Physics">Physics</option>
+											<option value="Environmental">Environmental Engineering</option>
+											<option value="Mechanical">Mechanical Engineering</option>
+											<option value="Colorado">Colorado Space Grant</option>
+											<option value="Engineering Education">Engineering Education</option>
+											<option value="ATLAS">ATLAS</option>
+										</select>	
+<a href="{% url 'project_list' %}"><button style="height:40px; width:420px" class="btn btn-primary btn-large">View Available Projects by Student Major</button></a></form>
+<form class="form-horizontal" action="/submit/listbydept/" name="example_form" method="POST">
+	<input style="height:40px; width:420px"  type = "text" name = "title" id = "title" placeholder = "Title of project" required>
+<a href="{% url 'project_list' %}"><button style="height:40px; width:420px"  class="btn btn-primary btn-large">View Available Projects by Project title</button></a></form>
+<form class="form-horizontal" action="/submit/listbyfaculty/" name="example_form" method="POST">
+	<input style="height:40px; width:420px"  type = "text" name = "facultyname" id = "facultyname" placeholder = "Primary faculty name" required>
+<a href="{% url 'project_list' %}"><button style="height:40px; width:420px"  class="btn btn-primary btn-large">View Available Projects by Project faculty name</button></a></form>
+
+				</div>	
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
