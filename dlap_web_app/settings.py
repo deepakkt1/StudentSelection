@@ -29,7 +29,6 @@ DEBUG = True
 # Application definition
 
 INSTALLED_APPS = [
-    'login',
     'submit',
     'student',
     'django.contrib.admin',
@@ -80,17 +79,28 @@ WSGI_APPLICATION = 'dlap_web_app.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
+#DATABASES = {
+#    'default': {
+#	'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+#	'NAME': BASE_DIR + '/loginapp.sqlite',  # Or path to database file if using sqlite3.
+#	# The following settings are not used with sqlite3:
+#	'USER': '',
+#	'PASSWORD': '',
+#	'HOST': '',   # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+#	'PORT': '',   # Set to empty string for default.
+#    } 
+#}
+
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': BASE_DIR + '/loginapp.sqlite',  # Or path to database file if using sqlite3.
-        # The following settings are not used with sqlite3:
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',   # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '',   # Set to empty string for default.
-    } 
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd7ho68nu4fvsvf',
+        'USER': 'gldedrpclrcjpg',
+        'PASSWORD': '3tkHBXLpWBV3rOgWjIxLT_XYSK',
+        'HOST': 'ec2-50-17-249-147.compute-1.amazonaws.com',
+        'PORT': '5432',
+    }
 }
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -141,3 +151,12 @@ STATICFILES_DIRS = [
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+from django.core.exceptions import ImproperlyConfigured
+ 
+def get_env_variable(var_name):
+    try:
+        return os.environ[var_name]
+    except KeyError:
+        error_msg = "Set the %s environment variable" % var_name
+        raise ImproperlyConfigured(error_msg)

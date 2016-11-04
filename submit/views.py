@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse
 from django.views.generic import ListView
 from django.shortcuts import render_to_response
 from .models import Project
-
+from django.http import HttpResponseRedirect
 # Create your views here.
 
 @csrf_exempt

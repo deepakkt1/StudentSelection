@@ -47,7 +47,6 @@ def studinfo(request):
 		primary_last_name = lname, 
 		optradio = optradio,
 		ethnic_type = ethnic_radio,
-		#full_desc = full_desc,
 		bldr_addr = bldr_addr,
 		bldr_phone_number = bldr_phone_number,
 		bldr_email = bldr_email,
