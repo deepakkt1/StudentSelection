@@ -4,15 +4,13 @@ from . import views
 
 urlpatterns = [
     url(r'^project_form.html$', views.project_form, name='project_form'),
-    url(r'^project_list.html$', views.project_list.as_view(), name='project_list'),
-    url(r'^project_listmajor.html$', views.project_listmajor.as_view(), name='project_listmajor'),
+    url(r'^project_list/$', views.project_list, name='project_list'),
+    url(r'^search/facultydept/$', views.searchfacultydept, name='search_faculty_dept'),
+    url(r'^search/studentmajor/$', views.searchstudentmajor, name='search_student_major'),
+    url(r'^search/projectname/$', views.searchprojectname, name='search_project_name'),
+    url(r'^search/facultyname/$', views.searchfacultyname, name='search_faculty_name'),
+    url(r'^search/$', views.searchall, name='search_all_projects'),
     url(r'^(?P<project_id>[0-9]+)$', views.project, name='project'),
     url(r'^$', views.submit, name='submit'),
-    #url(r'^search/$', views.search),
-    url(r'listbydept', views.projectbydept, name ='submit/listbydept/'),
-    url(r'listbyfaculty', views.projectbyfaculty, name ='submit/listbyfaculty/'),
-    url(r'listbymajor', views.projectbymajor, name ='submit/listbymajor/'),
-    url(r'listbyprimarydept', views.projectbyfacultydept, name ='submit/listbyprimarydept/'),
-    url(r'^bytitle.html$', views.showpage),
 ]
 

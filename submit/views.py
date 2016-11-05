@@ -14,58 +14,49 @@ def project_form(request):
     template = loader.get_template('submit/project_form.html')
     return HttpResponse(template.render(request))
 
-
 @csrf_exempt
-def showpage(request):
-    template = loader.get_template('submit/bytitle.html')
-    return HttpResponse(template.render(request))
-
 def project(request, project_id):
 	project = Project.objects.get(pk=project_id)
 	return render(request, 'submit/project.html', {'project': project})
-@csrf_exempt
-def projectbydept(request):
-	search_text = request.POST.get('title','')
-	listofproj = []	
-	listofproj = Project.objects.filter(app_title__contains=search_text)
-	return render_to_response('submit/ajax_search.html',{'listofproj':listofproj})
 
 @csrf_exempt
-def projectbyfaculty(request):
-	search_text = request.POST.get('facultyname','')
-	listofproj = []	
-	listofproj = Project.objects.filter(primary_first_name__contains=search_text) | Project.objects.filter(primary_last_name__contains=search_text)
-	return render_to_response('submit/ajax_search.html',{'listofproj':listofproj})
+def project_list(request):
+	return render(request, 'submit/project_list.html')
 
 @csrf_exempt
-def projectbymajor(request):
-	search_text = request.POST.get('major','')
-	listofproj = []	
-	if (search_text == 'All'):
-		listofproj = Project.objects.all()	
+def searchall(request):
+	projects = Project.objects.all()	
+	return render(request, 'submit/project_list_results.html', {'projects': projects})
+
+@csrf_exempt
+def searchfacultydept(request):
+	search_text = request.POST.get('faculty_dept','')
+	if (search_text == 'ALL'):
+		projects = Project.objects.all()	
 	else:	
-		listofproj = Project.objects.filter(recruit_fields__contains=search_text)
-	return render_to_response('submit/ajax_search.html',{'listofproj':listofproj})
+		projects = Project.objects.filter(primary_faculty_dept__contains=search_text)
+	return render(request, 'submit/project_list_results.html', {'projects': projects})
 
 @csrf_exempt
-def projectbyfacultydept(request):
-	search_text = request.POST.get('major','')
-	listofproj = []	
-	if (search_text == 'All'):
-		listofproj = Project.objects.all()	
+def searchstudentmajor(request):
+	search_text = request.POST.get('student_major','')
+	if (search_text == 'ALL'):
+		projects = Project.objects.all()	
 	else:	
-		listofproj = Project.objects.filter(primary_faculty_dept__contains=search_text)
-	return render_to_response('submit/ajax_search.html',{'listofproj':listofproj})
+		projects = Project.objects.filter(recruit_fields__contains=search_text)
+	return render(request, 'submit/project_list_results.html', {'projects': projects})
 
-class project_list(ListView):
-	model = Project    
- 	template_name = 'submit/project_list.html'
+@csrf_exempt
+def searchprojectname(request):
+	search_text = request.POST.get('project_name','')
+	projects = Project.objects.filter(app_title__contains=search_text)
+	return render(request, 'submit/project_list_results.html',{'projects': projects})
 
-class project_listmajor(ListView):
-	#template = loader.get_template('submit/project_listmajor.html')
-	#return HttpResponse(template.render(request))
-	model = Project    
-	template_name = 'submit/project_listmajor.html'
+@csrf_exempt
+def searchfacultyname(request):
+	search_text = request.POST.get('faculty_name','')
+	projects = Project.objects.filter(primary_first_name__contains=search_text) | Project.objects.filter(primary_last_name__contains=search_text)
+	return render(request, 'submit/project_list_results.html', {'projects': projects})
 
 @csrf_exempt
 def submit(request):

@@ -1,0 +1,33 @@
+{% if projects.count > 0 %}
+
+{% for project in projects %}
+{% if project.app_title %}
+<div class="panel panel-default" id="grad-student-info">
+	<div class="panel-heading" align="center">
+		<p>{{ project.app_title }}</p>
+	</div>
+	<div class="panel-body">
+		<div class="contol-label form-group">
+			<label for="primary_contact" class="col-sm-2">Primary Faculty:</label>
+			<div class="col-sm-10">
+				<p id="primary_contact">{{ project.primary_first_name }} {{ project.primary_last_name }}</p>
+			</div>
+		</div>
+		<div class="contol-label form-group">
+			<label for="project_description" class="col-sm-2">Description:</label>
+			<div class="col-sm-10">
+				<p id="project_description">{{ project.full_desc }}</p>
+			</div>
+		</div>
+		<div class="button">
+			<h2><a href="/submit/{{ project.id }}"><button class="btn btn-primary btn-large">View Full Project Details</button></a></h2>
+		</div>
+	</div>
+</div>
+{% endif %}
+{% endfor %}
+
+{% else %}
+
+<h2>Oops! Your query does not match any record in our database... Click on logo to go back to homepage</h2>
+{% endif %}

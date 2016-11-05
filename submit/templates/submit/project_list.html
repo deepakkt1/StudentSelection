@@ -25,355 +25,233 @@
 			  </div>
 			</div>
 			<div class="body">
+				<div class="project-list-header">
+					<h1>Faculty Projects List</h1>
+				</div>
+				<div class="search-container">
+					<div class="search-container-header">
+						<h3 id="search_container_title">Search Faculty Projects</h3>
+					</div>
+					<div class="search-container-body">
+						<div id="search_criteria_container" class="col-sm-4">
+							<select id="search_criteria_select" class="search-criteria" onchange="updateSearchContainer()">
+							  <option value="ALL" id="OPTION_0">View All Projects</option>
+							  <option value="FAC-DEPT" id="OPTION_1">Search by Faculty Department</option>
+							  <option value="STDNT_MAJ" id="OPTION_2">Search by Student Major</option>
+							  <option value="PROJ_TITLE" id="OPTION_3">Search by Project Title</option>
+							  <option value="FAC_MEM" id="OPTION_4">Search by Faculty Member</option>
+							</select>
+						</div>
+						<div id="search_input_container" class="col-sm-4">
+							<select id="faculty_deptartment_select" class="search-input" name="faculty_department" style="display:none">
+								<option value="ALL">All departments</option>											
+								<option value="AES">Aerospace Engineering Sciences</option>
+								<option value="APPM">Applied Math</option>
+								<option value="CHBE">Chemical &amp; Biological Engineering</option>
+								<option value="CEAE">Civil, Environmental and Architectural Engineering</option>
+								<option value="CS">Computer Science</option>
+								<option value="ECEE">Electrical, Computer and Energy Engineering</option>
+								<option value="PHYS">Physics</option>
+								<option value="EVEN">Environmental Engineering</option>
+								<option value="ME">Mechanical Engineering</option>
+								<option value="CSGC">Colorado Space Grant</option>
+								<option value="EnEd">Engineering Education</option>
+								<option value="ATLS">ATLAS</option>
+							</select>
+							<select id="student_major_select" class="search-input" name="student_major" style="display:none">
+								<option value="ALL">All departments</option>											
+								<option value="Aerospace Engineering">Aerospace Engineering Sciences</option>
+								<option value="Applied Math">Applied Math</option>
+								<option value="Chemical">Chemical &amp; Biological Engineering</option>
+								<option value="Civil">Civil, Environmental and Architectural Engineering</option>
+								<option value="Computer Science">Computer Science</option>
+								<option value="Electrical">Electrical, Computer and Energy Engineering</option>
+								<option value="Physics">Physics</option>
+								<option value="Environmental">Environmental Engineering</option>
+								<option value="Mechanical">Mechanical Engineering</option>
+								<option value="Colorado">Colorado Space Grant</option>
+								<option value="Engineering Education">Engineering Education</option>
+								<option value="ATLAS">ATLAS</option>
+							</select>
+							<input id="search_project_name_input" class="search-input" type="text" placeholder="Enter Project Name" name="project_name" style="display:none">
+							<input id="search_faculty_name_input" class="search-input" type="text" placeholder="Enter Faculty Name" name="faculty_name" style="display:none">
+						</div>
+						<div id="search_btn_container" class="col-sm-4">
+							<button id="search_btn" class="btn btn-primary btn-small" onclick="retrieveProjects()">Search Projects</button>
+						</div>
 
-				<h1 align="center">Available Projects by all departments</h1>
-<p>[Note: If you don't find a department listed here, it means the respective department hasn't offered project yet!]</p>
-{% for project in object_list %}
-{% if 'AES' in project.primary_faculty_dept %}
-<h2><a href="#AES">Aerospace Engineering Sciences</a></h2>
-{% endif %}
-{% if project.primary_faculty_dept == 'APPM'  %}
-<h2><a href="#APPM">Applied Math</a></h2>
-{% endif %}
-{% if project.primary_faculty_dept == 'CHBE'  %}
-<h2><a href="#CHBE">Chemical and Biological Engineering</a></h2>
-{% endif %}
-{% if project.primary_faculty_dept == 'CEAE'  %}
-<h2><a href="#CEAE">Civil, Environmental and Architectural Engineering</a></h2>
-{% endif %}
-{% if project.primary_faculty_dept == 'CS'  %}
-<h2><a href="#CS">Computer Science</a></h2>
-{% endif %}
-{% if project.primary_faculty_dept == 'ECEE'  %}
-<h2><a href="#ECEE">Electrical, Computer and Energy Engineering</a></h2>
-{% endif %}
-{% if project.primary_faculty_dept == 'PHYS'  %}
-<h2><a href="#PHYS">Physics</a></h2>
-{% endif %}
-{% if project.primary_faculty_dept == 'EVEN'  %}
-<h2><a href="#EVEN">Environmental Engineering</a></h2>
-{% endif %}
-{% if project.primary_faculty_dept == 'ME'  %}
-<h2><a href="#ME">Mechanical Engineering</a></h2>
-{% endif %}
-{% if project.primary_faculty_dept == 'CSGC'  %}
-<h2><a href="#CSGC">Colorado Space Grant</a></h2>
-{% endif %}
-{% if project.primary_faculty_dept == 'EnEd'  %}
-<h2><a href="#EnEd">Engineering Education</a></h2>
-{% endif %}
-{% if project.primary_faculty_dept == 'ATLS'  %}
-<h2><a href="#ATLS">ATLAS</a></h2>
-{% endif %}
-{% endfor %}
-				<div>
-					{% for project in object_list %}
-{% if project.primary_faculty_dept == 'AES'  %}
-<h3 id = "AES">Department: AES</h3>						
-						<div class="panel panel-default" id="grad-student-info">
-				    			<div class="panel-heading" align="center">{{ project.app_title }} 
-							</div>
-				    		<div class="panel-body">
-								<div class="contol-label form-group">
-									<label for="primary_contact" class="col-sm-2">Primary Faculty:</label>
-									<div class="col-sm-10">
-										<p id="primary_contact">{{ project.primary_first_name }} {{ project.primary_last_name }}</p>
-									</div>
-								</div>
-								<div class="contol-label form-group">
-									<label for="project_description" class="col-sm-2">Description:</label>
-									<div class="col-sm-10">
-										<p id="project_description">{{ project.full_desc }}</p>
-									</div>
-								</div>
-								<div class="button">
-									<h2><a href="/submit/{{ project.id }}"><button class="btn btn-primary btn-large">View Full Project Details</button></a></h2>
-								</div>
-			    			</div>
-			    			</div>
-						{% endif %}
-{% if project.primary_faculty_dept == 'APPM'  %}
-<h3 id = "APPM">Department: Applied Math</h3>
+						<script type="text/javascript">
+							
+							var httpRequest;
 
-<div class="panel panel-default" id="grad-student-info">
-				    			<div class="panel-heading" align="center">{{ project.app_title }} 
-							</div>
-				    		<div class="panel-body">
-								<div class="contol-label form-group">
-									<label for="primary_contact" class="col-sm-2">Primary Faculty:</label>
-									<div class="col-sm-10">
-										<p id="primary_contact">{{ project.primary_first_name }} {{ project.primary_last_name }}</p>
-									</div>
-								</div>
-								<div class="contol-label form-group">
-									<label for="project_description" class="col-sm-2">Description:</label>
-									<div class="col-sm-10">
-										<p id="project_description">{{ project.full_desc }}</p>
-									</div>
-								</div>
-								<div class="button">
-									<h2><a href="/submit/{{ project.id }}"><button class="btn btn-primary btn-large">View Full Project Details</button></a></h2>
-								</div>
-			    			</div>
-			    			</div>
-						{% endif %}
-{% if project.primary_faculty_dept == 'CHBE'  %}
-<h3 id = "CHBE">Department: Chemical and Biological Engineering</h3>
-<div class="panel panel-default" id="grad-student-info">
-				    			<div class="panel-heading" align="center">{{ project.app_title }} 
-							</div>
-				    		<div class="panel-body">
-								<div class="contol-label form-group">
-									<label for="primary_contact" class="col-sm-2">Primary Faculty:</label>
-									<div class="col-sm-10">
-										<p id="primary_contact">{{ project.primary_first_name }} {{ project.primary_last_name }}</p>
-									</div>
-								</div>
-								<div class="contol-label form-group">
-									<label for="project_description" class="col-sm-2">Description:</label>
-									<div class="col-sm-10">
-										<p id="project_description">{{ project.full_desc }}</p>
-									</div>
-								</div>
-								<div class="button">
-									<h2><a href="/submit/{{ project.id }}"><button class="btn btn-primary btn-large">View Full Project Details</button></a></h2>
-								</div>
-			    			</div>
-			    			</div>
-						
-{% endif %}
+							function alertContents() 
+							{
+								if (httpRequest.readyState === XMLHttpRequest.DONE) {
+									if (httpRequest.status === 200) {
+										var element = document.getElementById("content-holder");
+										element.innerHTML = httpRequest.responseText;
+									} else {
+										alert('There was a problem with the request.');
+									}
+								}
+							};
 
-{% if project.primary_faculty_dept == 'CEAE'  %}
-<h3 id = "CEAE">Department: Civil, Environmental and Architectural Engineering</h3>
-<div class="panel panel-default" id="grad-student-info">
-				    			<div class="panel-heading" align="center">{{ project.app_title }} 
-							</div>
-				    		<div class="panel-body">
-								<div class="contol-label form-group">
-									<label for="primary_contact" class="col-sm-2">Primary Faculty:</label>
-									<div class="col-sm-10">
-										<p id="primary_contact">{{ project.primary_first_name }} {{ project.primary_last_name }}</p>
-									</div>
-								</div>
-								<div class="contol-label form-group">
-									<label for="project_description" class="col-sm-2">Description:</label>
-									<div class="col-sm-10">
-										<p id="project_description">{{ project.full_desc }}</p>
-									</div>
-								</div>
-								<div class="button">
-									<h2><a href="/submit/{{ project.id }}"><button class="btn btn-primary btn-large">View Full Project Details</button></a></h2>
-								</div>
-			    			</div>
-			    			</div>
-						
-{% endif %}
-{% if project.primary_faculty_dept == 'CS'  %}
-<h3 id = "CS">Department: Computer Science</h3>
-<div class="panel panel-default" id="grad-student-info">
-				    			<div class="panel-heading" align="center">{{ project.app_title }} 
-							</div>
-				    		<div class="panel-body">
-								<div class="contol-label form-group">
-									<label for="primary_contact" class="col-sm-2">Primary Faculty:</label>
-									<div class="col-sm-10">
-										<p id="primary_contact">{{ project.primary_first_name }} {{ project.primary_last_name }}</p>
-									</div>
-								</div>
-								<div class="contol-label form-group">
-									<label for="project_description" class="col-sm-2">Description:</label>
-									<div class="col-sm-10">
-										<p id="project_description">{{ project.full_desc }}</p>
-									</div>
-								</div>
-								<div class="button">
-									<h2><a href="/submit/{{ project.id }}"><button class="btn btn-primary btn-large">View Full Project Details</button></a></h2>
-								</div>
-			    			</div>
-			    			</div>
-						
-{% endif %}
-{% if project.primary_faculty_dept == 'ECEE'  %}
-<h3 id = "ECEE">Department: Electrical, Computer and Energy Engineering</h3>
-<div class="panel panel-default" id="grad-student-info">
-				    			<div class="panel-heading" align="center">{{ project.app_title }} 
-							</div>
-				    		<div class="panel-body">
-								<div class="contol-label form-group">
-									<label for="primary_contact" class="col-sm-2">Primary Faculty:</label>
-									<div class="col-sm-10">
-										<p id="primary_contact">{{ project.primary_first_name }} {{ project.primary_last_name }}</p>
-									</div>
-								</div>
-								<div class="contol-label form-group">
-									<label for="project_description" class="col-sm-2">Description:</label>
-									<div class="col-sm-10">
-										<p id="project_description">{{ project.full_desc }}</p>
-									</div>
-								</div>
-								<div class="button">
-									<h2><a href="/submit/{{ project.id }}"><button class="btn btn-primary btn-large">View Full Project Details</button></a></h2>
-								</div>
-			    			</div>
-			    			</div>
-						
-{% endif %}
-{% if project.primary_faculty_dept == 'PHYS'  %}
-<h3 id = "PHYS">Department: Physics</h3>
-<div class="panel panel-default" id="grad-student-info">
-				    			<div class="panel-heading" align="center">{{ project.app_title }} 
-							</div>
-				    		<div class="panel-body">
-								<div class="contol-label form-group">
-									<label for="primary_contact" class="col-sm-2">Primary Faculty:</label>
-									<div class="col-sm-10">
-										<p id="primary_contact">{{ project.primary_first_name }} {{ project.primary_last_name }}</p>
-									</div>
-								</div>
-								<div class="contol-label form-group">
-									<label for="project_description" class="col-sm-2">Description:</label>
-									<div class="col-sm-10">
-										<p id="project_description">{{ project.full_desc }}</p>
-									</div>
-								</div>
-								<div class="button">
-									<h2><a href="/submit/{{ project.id }}"><button class="btn btn-primary btn-large">View Full Project Details</button></a></h2>
-								</div>
-			    			</div>
-			    			</div>
-						
-{% endif %}
-{% if project.primary_faculty_dept == 'EVEN'  %}
-<h3 id = "EVEN">Department: Environmental Engineering</h3>
-<div class="panel panel-default" id="grad-student-info">
-				    			<div class="panel-heading" align="center">{{ project.app_title }} 
-							</div>
-				    		<div class="panel-body">
-								<div class="contol-label form-group">
-									<label for="primary_contact" class="col-sm-2">Primary Faculty:</label>
-									<div class="col-sm-10">
-										<p id="primary_contact">{{ project.primary_first_name }} {{ project.primary_last_name }}</p>
-									</div>
-								</div>
-								<div class="contol-label form-group">
-									<label for="project_description" class="col-sm-2">Description:</label>
-									<div class="col-sm-10">
-										<p id="project_description">{{ project.full_desc }}</p>
-									</div>
-								</div>
-								<div class="button">
-									<h2><a href="/submit/{{ project.id }}"><button class="btn btn-primary btn-large">View Full Project Details</button></a></h2>
-								</div>
-			    			</div>
-			    			</div>
-						
-{% endif %}
-{% if project.primary_faculty_dept == 'ME'  %}
-<h3 id = "ME">Department: Mechanical Engineering</h3>
-<div class="panel panel-default" id="grad-student-info">
-				    			<div class="panel-heading" align="center">{{ project.app_title }} 
-							</div>
-				    		<div class="panel-body">
-								<div class="contol-label form-group">
-									<label for="primary_contact" class="col-sm-2">Primary Faculty:</label>
-									<div class="col-sm-10">
-										<p id="primary_contact">{{ project.primary_first_name }} {{ project.primary_last_name }}</p>
-									</div>
-								</div>
-								<div class="contol-label form-group">
-									<label for="project_description" class="col-sm-2">Description:</label>
-									<div class="col-sm-10">
-										<p id="project_description">{{ project.full_desc }}</p>
-									</div>
-								</div>
-								<div class="button">
-									<h2><a href="/submit/{{ project.id }}"><button class="btn btn-primary btn-large">View Full Project Details</button></a></h2>
-								</div>
-			    			</div>
-			    			</div>
-						
-{% endif %}
-{% if project.primary_faculty_dept == 'CSGC'  %}
-<h3 id = "CSGC">Department: Colorado Space Grant</h3>
-<div class="panel panel-default" id="grad-student-info">
-				    			<div class="panel-heading" align="center">{{ project.app_title }} 
-							</div>
-				    		<div class="panel-body">
-								<div class="contol-label form-group">
-									<label for="primary_contact" class="col-sm-2">Primary Faculty:</label>
-									<div class="col-sm-10">
-										<p id="primary_contact">{{ project.primary_first_name }} {{ project.primary_last_name }}</p>
-									</div>
-								</div>
-								<div class="contol-label form-group">
-									<label for="project_description" class="col-sm-2">Description:</label>
-									<div class="col-sm-10">
-										<p id="project_description">{{ project.full_desc }}</p>
-									</div>
-								</div>
-								<div class="button">
-									<h2><a href="/submit/{{ project.id }}"><button class="btn btn-primary btn-large">View Full Project Details</button></a></h2>
-								</div>
-			    			</div>
-			    			</div>
-						
-{% endif %}
-{% if project.primary_faculty_dept == 'EnEd'  %}
-<h3 id = "EnEd">Department: Engineering Education</h3>
-<div class="panel panel-default" id="grad-student-info">
-				    			<div class="panel-heading" align="center">{{ project.app_title }} 
-							</div>
-				    		<div class="panel-body">
-								<div class="contol-label form-group">
-									<label for="primary_contact" class="col-sm-2">Primary Faculty:</label>
-									<div class="col-sm-10">
-										<p id="primary_contact">{{ project.primary_first_name }} {{ project.primary_last_name }}</p>
-									</div>
-								</div>
-								<div class="contol-label form-group">
-									<label for="project_description" class="col-sm-2">Description:</label>
-									<div class="col-sm-10">
-										<p id="project_description">{{ project.full_desc }}</p>
-									</div>
-								</div>
-								<div class="button">
-									<h2><a href="/submit/{{ project.id }}"><button class="btn btn-primary btn-large">View Full Project Details</button></a></h2>
-								</div>
-			    			</div>
-			    			</div>
-						
-{% endif %}
-{% if project.primary_faculty_dept == 'ATLS'  %}
-<h3 id = "ATLS">Department: ATLAS</h3>
-<div class="panel panel-default" id="grad-student-info">
-				    			<div class="panel-heading" align="center">{{ project.app_title }} 
-							</div>
-				    		<div class="panel-body">
-								<div class="contol-label form-group">
-									<label for="primary_contact" class="col-sm-2">Primary Faculty:</label>
-									<div class="col-sm-10">
-										<p id="primary_contact">{{ project.primary_first_name }} {{ project.primary_last_name }}</p>
-									</div>
-								</div>
-								<div class="contol-label form-group">
-									<label for="project_description" class="col-sm-2">Description:</label>
-									<div class="col-sm-10">
-										<p id="project_description">{{ project.full_desc }}</p>
-									</div>
-								</div>
-								<div class="button">
-									<h2><a href="/submit/{{ project.id }}"><button class="btn btn-primary btn-large">View Full Project Details</button></a></h2>
-								</div>
-			    			</div>
-			    			</div>
-						
-{% endif %}
+							function getSearchURL(id)
+							{
+								var url;
 
-				 	{% endfor %}
+								switch (id) {
+									case "OPTION_1":
+										url = "{% url 'search_faculty_dept' %}";
+										break;
+
+									case "OPTION_2":
+										url = "{% url 'search_student_major' %}";
+										break;
+
+									case "OPTION_3":
+										url = "{% url 'search_project_name' %}";
+										break;
+
+									case "OPTION_4":
+										url = "{% url 'search_faculty_name' %}";
+										break;
+
+									default :
+										url = "{% url 'search_all_projects' %}";
+								}
+
+								return url;
+							}
+
+							function getSearchParams(id)
+							{
+								var params;
+								var input;
+
+								switch (id) {
+									case "OPTION_1":
+
+										input = document.getElementById("faculty_deptartment_select");
+										params = "faculty_dept=" + input.options[input.selectedIndex].value;
+										break;
+
+									case "OPTION_2":
+										input = document.getElementById("student_major_select");
+										params = "student_major=" + input.options[input.selectedIndex].value;
+										break;
+
+									case "OPTION_3":
+										input = document.getElementById("search_project_name_input");
+										params = "project_name=" + input.value;
+										break;
+
+									case "OPTION_4":
+										input = document.getElementById("search_faculty_name_input");
+										params = "faculty_name=" + input.value;
+										break;
+
+									default :
+										break;
+								}
+
+								return params;
+							}
+
+							function retrieveProjects() 
+							{
+								httpRequest = new XMLHttpRequest();
+
+								if (!httpRequest) {
+									alert('Giving up :( Cannot create an XMLHTTP instance');
+									return false;
+								}
+
+								var selectCriteria = document.getElementById("search_criteria_select");
+								var id = selectCriteria.options[selectCriteria.selectedIndex].id;
+
+								var searchURL = getSearchURL(id);
+								var searchParams = getSearchParams(id);
+
+								httpRequest.onreadystatechange = alertContents;
+								httpRequest.open('POST', searchURL, true);
+								httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+								httpRequest.send(searchParams);
+							};
+
+							function hideSearchInputs()
+							{
+								var searchInput = document.getElementById("search_input_container");
+								var searchInputs = searchInput.getElementsByClassName("search-input");
+
+								for(var i=0; i<searchInputs.length; i++) {
+									var input = searchInputs[i];
+									input.style.display = "none";
+								}	
+							}
+
+							function showFacultyDeptInput()
+							{
+								var input = document.getElementById("faculty_deptartment_select");
+								input.style.display = "inline";
+							}
+
+							function showStudentMajorInput()
+							{
+								var input = document.getElementById("student_major_select");
+								input.style.display = "inline";
+							}
+
+							function showProjectNameInput()
+							{
+								var input = document.getElementById("search_project_name_input");
+								input.style.display = "inline";
+							}
+
+							function showFacultyNameInput()
+							{
+								var input = document.getElementById("search_faculty_name_input");
+								input.style.display = "inline";
+							}
+
+							function updateSearchContainer()
+							{
+								hideSearchInputs();
+
+								var selectCriteria = document.getElementById("search_criteria_select");
+								var id = selectCriteria.options[selectCriteria.selectedIndex].id;
+								var value = selectCriteria.options[selectCriteria.selectedIndex].value;
+
+								switch (id) {
+									case "OPTION_1":
+										showFacultyDeptInput();
+										break;
+
+									case "OPTION_2":
+										showStudentMajorInput();
+										break;
+
+									case "OPTION_3":
+										showProjectNameInput();
+										break;
+
+									case "OPTION_4":
+										showFacultyNameInput();
+										break;
+
+									default :
+										break;
+								}
+							}
+
+						</script>
+						
+					</div>
+				</div>
 				
-		      	</div>
-		 </div>
-	</div>
+				<div id="content-holder" style="margin:50px">
+				</div>
+			</div>
 	</body>
 </html>
 
