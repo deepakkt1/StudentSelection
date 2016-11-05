@@ -43,7 +43,7 @@ class Project(models.Model):
 	app_title = models.CharField(max_length=255)
 	app_url = models.CharField(max_length=255)
 	special_reqs = models.CharField(max_length=255)
-	full_desc = models.CharField(max_length=1024)
+	full_desc = models.CharField(max_length=5024)
 	recruit_fields = models.CharField(max_length=512)
 
 	supervision_status = models.CharField(max_length=255)
