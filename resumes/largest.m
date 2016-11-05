@@ -1,7 +1,3 @@
-%John Gibson
-%Jogi7509 - 106258944
-%Assignement 5
-%Ioana Fleming
 figure(1)
 x = 1:10;
 y = x;
