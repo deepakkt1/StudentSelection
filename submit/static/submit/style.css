@@ -1,5 +1,5 @@
 body {
-	background-color: #aeaeae;
+	background-color: #eeeeee;
 }
 
 div.body {
@@ -14,6 +14,7 @@ div.container {
 
 div.jumbotron {
 	background-color: #ffffff;
+	margin-bottom: 0px;
 }
 
 label {
@@ -44,14 +45,16 @@ div.search-container {
 	border: 1px solid #aeaeae;
 	border-radius: 10px;
 	overflow: auto;
+	background-color: #fafafa;
 }
 
 button.home-btn {
 	margin: 8px;
 }
 
-#search_container_title {
-	margin: 5px;
+div.page-title{
+	text-align: center;
+	margin-bottom: 25px;
 }
 
 div.project-list-header {
