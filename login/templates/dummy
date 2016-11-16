@@ -1,0 +1,7 @@
+    for p in range(3):
+        row = dict()
+        row['p1'] =p+ 0
+        row['p2'] =p+ 1
+        row['p3'] =p+ 2
+        data.append(row) 
+

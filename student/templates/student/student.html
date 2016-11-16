@@ -92,8 +92,8 @@
 								<div class="control-label form-group" >
 									<label for="gender_radio" class="col-sm-3" align = left><span style="color: #ff0000">*</span>Gender:</label>
 									<div class="radio col-sm-8" id="gender_radio" align = left>
-										<label class="radio-inline"><input type="radio" name="optradio" required>Male</label>
-										<label class="radio-inline"><input type="radio" name="optradio" required>Female</label>
+										<label class="radio-inline"><input type="radio" value="Male" name="optradio" required>Male</label>
+										<label class="radio-inline"><input type="radio" value="Male" name="optradio" required>Female</label>
 									</div>
 								</div>
 								<div class="control-label form-group">
@@ -319,9 +319,9 @@
 										<p>(1 - 5 :: Most Interesting - Least Interesting)</p>
 									</div>
 									<div class="contol-label form-group">
-										<label for="school_level_select" class="col-sm-3" align = right><span style="color: #ff0000">*</span>1:</label>
+										<label for="project1" class="col-sm-3" align = right><span style="color: #ff0000">*</span>1:</label>
 										<div class="col-sm-8" align = left>
-											<select class="form-control" id="school_level_select"  required>
+											<select class="form-control" id="project1" name="project1"  required>
 												<option value="">Please Select</option>
 												{% for pro in project %}
 				{%  if pro.app_title %}								
@@ -332,9 +332,9 @@
 										</div>
 									</div>
 									<div class="contol-label form-group">
-										<label for="school_level_select" class="col-sm-3" align = right>2:</label>
+										<label for="project2" class="col-sm-3" align = right>2:</label>
 										<div class="col-sm-8">
-											<select class="form-control" id="school_level_select">
+											<select class="form-control" id="project2" name="project2">
 												<option value="0">Please Select</option>
 												{% for pro in project %}
 				{%  if pro.app_title %}								
@@ -345,9 +345,9 @@
 										</div>
 									</div>
 									<div class="contol-label form-group">
-										<label for="school_level_select" class="col-sm-3" align = right>3:</label>
+										<label for="project3" class="col-sm-3" align = right>3:</label>
 										<div class="col-sm-8">
-											<select class="form-control" id="school_level_select">
+											<select class="form-control" id="project3" name="project3">
 												<option value="0">Please Select</option>
 												{% for pro in project %}
 				{%  if pro.app_title %}								
@@ -358,9 +358,9 @@
 										</div>
 									</div>
 									<div class="contol-label form-group">
-										<label for="school_level_select" class="col-sm-3" align = right>4:</label>
+										<label for="project4" class="col-sm-3" align = right>4:</label>
 										<div class="col-sm-8">
-											<select class="form-control" id="school_level_select">
+											<select class="form-control" id="project4" name="project4">
 
 <option value="0">Please Select</option>
 												{% for pro in project %}
@@ -372,9 +372,9 @@
 										</div>
 									</div>
 									<div class="contol-label form-group">
-										<label for="school_level_select" class="col-sm-3" align = right>5:</label>
+										<label for="project5" class="col-sm-3" align = right>5:</label>
 										<div class="col-sm-8">
-											<select class="form-control" id="school_level_select">
+											<select class="form-control" id="project5" name="project5">
 												<option value="0">Please Select</option>
 
 {% for pro in project %}

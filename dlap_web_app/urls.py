@@ -22,5 +22,6 @@ urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^submit/', include('submit.urls')),
     url(r'^studentsubmit/', include('student.urls')),
+    url(r'^client/', include('login.urls')),
     url(r'^admin/', admin.site.urls),
 ]

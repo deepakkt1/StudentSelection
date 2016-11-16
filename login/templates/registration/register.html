@@ -1,12 +1,37 @@
-{% extends "base.html" %}
-{% block title %}User Registration{% endblock %}
-{% block head %}User Registration{% endblock %}
+<!DOCTYPE html>
+<html>
+	<head>
+		{% load static %}
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="{% static 'submit/style.css' %}">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<div class="container content">
+			<div class="header">
+			  <div class="jumbotron">
+			  	<div class="row">
+				  	<div class="col-sm-3">
+				  	<a href="https://dlap-web-app.herokuapp.com"><img src="http://www.colorado.edu/activelearningprogram/profiles/express/themes/cusimple/logo.png" height="200" width="200"></a>
+				  	</div>
+				  	<div class="col-sm-9">
+				  		<h1>Discovery Learning Apprenticeship Program</h1>
+				    	<p>UNIVERSITY OF COLORADO <strong>BOULDER</strong></p>
+				  	</div>
+			  	</div>
+			  </div>
+			</div>
+			<div class="body" align=center>
 {% block content %}
     <form method="post" action=".">{% csrf_token %}
         <table border="0">
-            {{ form.as_p }}
+            {{ form.as_table }}
         </table>
-        <input type="submit" value="Register" />
+        <input class="btn btn-primary btn-large home-btn"  type="submit" value="Register" />
     </form>
-    <a href="/">Login</a>
+    <a href="{% url 'client' %}"><button class="btn btn-primary btn-large home-btn">Client login</button></a>
 {% endblock %}
+</div>
+</html>

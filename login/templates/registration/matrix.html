@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{% load static %}
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="{% static 'submit/style.css' %}">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="header">
+			  <div class="jumbotron">
+			  	<div class="row">
+				  	<div class="col-sm-3">
+				  		<a href="https://dlap-web-app.herokuapp.com/"><img src="http://www.colorado.edu/activelearningprogram/profiles/express/themes/cusimple/logo.png" height="200" width="200"></a>
+				  	</div>
+				  	<div class="col-sm-9">
+				  		<h1>Discovery Learning Apprenticeship Program</h1>
+				    	<p>UNIVERSITY OF COLORADO <strong>BOULDER</strong></p>
+				  	</div>
+			  	</div>
+			  </div>
+			</div>
+			<div class="body">
+				<div class="page-title">
+					<h1>Matrix of student sumbissions and project lists</h1>
+				</div>
+				<div>
+
+				<table class="table table-hover">	
+				<thead>				
+				<tr>
+				{% for student in names %}
+						<th> {{ student }}
+						</th>
+				{% endfor %}
+				</tr>	
+				</thead>				
+				{% for student in students %}
+					<tr>
+						{% for i in student %}
+							{% if forloop.first %}							
+							<td bgcolor="#A9A9A9">{{ i }}</td>
+							{% elif i > 0 and i < 5 %}							
+							<td bgcolor="#228B22">{{ i }}</td>	
+							{% else %}
+							<td class="info">{{ i }}</td>	
+							{% endif %}
+						{% endfor %}
+				{% endfor %}
+					</tr>
+
+
+				</table>
+		</br>
+		<h2 align=center>Student details matrix</h2>
+			<table class="table table-striped">
+				<tr>
+					<th>Primary First Name</th>
+					<th>Primary Last Name</th>
+					<th>Gender</th>
+					<th>Ethnic Type</th>
+					<th>Phone Number</th>
+					<th>Email</th>
+					<th>Student Number</th>
+					<th>Student Department</th>
+					<th>GPA</th>
+					<th>School Level</th>
+					<th>Research</th>
+					<th>Last 4 SSN</th>
+				</tr>
+				{% for pro in student %}
+				<tr>
+					<td>{{ pro.primary_first_name }}</td>
+					<td>{{ pro.primary_last_name }}</td>
+					<td>{{ pro.optradio }}</td>
+					<td>{{ pro.ethnic_type }}</td>
+					<td>{{ pro.bldr_phone_number }}</td>
+					<td>{{ pro.bldr_email }}</td>
+					<td>{{ pro.student_number }}</td>
+					<td>{{ pro.student_department }} </td>
+					<td>{{ pro.gpa }}</td>
+					<td>{{ pro.school_level_select }}</td>
+					<td>{{ pro.optradio_research }}</td>
+					<td>{{ pro.last_digits_ssn }}</td>
+				</tr>
+				{% endfor %}
+			</table>
+				</div>
+
+		</div>
+<a href="/client/logout"><button class="btn btn-primary btn-large home-btn">Logout</button></a>
+	</body>

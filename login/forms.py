@@ -8,11 +8,9 @@ CHOICES=[('Student','Student'),
          ('Client','Client')]
 
 class RegistrationForm(forms.Form):
- 
     username = forms.RegexField(regex=r'^\w+$', widget=forms.TextInput(attrs=dict(required=True, max_length=300)), label=_("Username"), error_messages={ 'invalid': _("This value must contain only letters, numbers and underscores HERE I AM ******!!!!.") })
     email = forms.EmailField(widget=forms.TextInput(attrs=dict(required=True, max_length=30)), label=_("Email address"))
-    first_name = forms.RegexField(regex=r'^\w+$', widget=forms.TextInput(attrs=dict(required=True, max_length=30)), label=_("Student Name"))
-    last_name = forms.ChoiceField(choices=CHOICES, required = True, label = _("User Type"))
+    first_name = forms.RegexField(regex=r'^\w+$', widget=forms.TextInput(attrs=dict(required=True, max_length=30)), label=_("Name"))
     password1 = forms.CharField(widget=forms.PasswordInput(attrs=dict(required=True, max_length=30, render_value=False)), label=_("Password"))
     password2 = forms.CharField(widget=forms.PasswordInput(attrs=dict(required=True, max_length=30, render_value=False)), label=_("Password (again)"))
  

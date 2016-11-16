@@ -42,6 +42,11 @@ def studinfo(request):
 	background_chk_radio = request.POST.get('background_chk_radio',"N/A");
 	resume =  request.FILES.get('resume');
 	coverletter = request.FILES.get('coverletter');
+	project1 = request.POST.get('project1',"N/A");
+	project2 = request.POST.get('project2',"N/A");
+	project3 = request.POST.get('project3',"N/A");
+	project4 = request.POST.get('project4',"N/A");
+	project5 = request.POST.get('project5',"N/A");
 	student = Student(
 		primary_first_name = fname, 
 		primary_last_name = lname, 
@@ -66,7 +71,12 @@ def studinfo(request):
 		fall_employment_textarea = fall_employment_textarea,
 		resume = resume,
 		coverletter = coverletter,
-		background_chk_radio = background_chk_radio
+		background_chk_radio = background_chk_radio,
+		project1 = project1,
+		project2 = project2,
+		project3 = project3,
+		project4 = project4,
+		project5 = project5
 	)
 	student.save()
 	#template = loader.get_template('submit/home.html')
