@@ -1,0 +1,60 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+    public static void main(String args[] ) throws Exception {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT */
+        Scanner s = new Scanner(System.in);
+        String fl = s.nextLine();
+        s.nextLine();
+        ArrayList<String> inp = new ArrayList<String>();
+        while(s.hasNextLine()){
+            inp.add(s.nextLine());
+        }
+        String[] pairs = fl.split(",\\s+");
+        int start = Integer.parseInt(pairs[0].replaceAll("-",""));
+        int end = Integer.parseInt(pairs[1].replaceAll("-",""));
+Map<String, Map<String, String>> hm = new TreeMap<String,Map<String, String>>(Collections.reverseOrder());
+       
+        for(int i =0 ;i<inp.size();i++){
+            String[] curr = (inp.get(i)).split(",\\s+");
+            int currd = Integer.parseInt((curr[0].replaceAll("-","")).substring(0,6));
+            if(currd >= start && currd <= end){
+                String key = (curr[0].substring(0,7)+", ");
+                 Map<String, String> inner = new TreeMap<String, String>();
+                inner.put(curr[1]+", ",curr[2]);
+                String value = curr[1] + ", "+curr[2]+", "; 
+                if(hm.containsKey(key)){
+                    //String temp = hm.get(key);
+                    Map<String, String> priortag = new TreeMap<String, String>();
+                    priortag = hm.get(key);
+                 /*   if(priortag.containsKey(curr[1]+", "))
+                        {
+                        String old = priortag.getValue(curr[1]+", ");
+                        
+                    }*/
+                    priortag.put(", "+curr[1] + ", ",curr[2]);
+                   hm.put(key, priortag);
+                }
+                else{
+                     Map<String, String> ninner = new TreeMap<String, String>();
+                     ninner.put(curr[1]+", ",curr[2]);
+               hm.put(key,ninner);     
+             //       hm.put(key, value.substring(0, value.length()-2));
+                }
+            }
+        }
+        
+     
+        Set set = hm.entrySet();
+        Iterator i = set.iterator();
+        Map<String, String> innerd = new TreeMap<String, String>();
+         while(i.hasNext()) {
+                   Map.Entry me = (Map.Entry)i.next();
+      System.out.print(me.getKey() + ""+me.getValue());
+      }
+    }
+}
