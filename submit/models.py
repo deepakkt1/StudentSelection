@@ -1,8 +1,8 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from student.models import Student
 
-# Create your models here.
 
 CATEGORIES = (
     ('AER','Aerospace Engineering Sciences '),
@@ -43,7 +43,7 @@ class Project(models.Model):
 	app_title = models.CharField(max_length=255)
 	app_url = models.CharField(max_length=255)
 	special_reqs = models.CharField(max_length=255)
-	full_desc = models.CharField(max_length=5024)
+	full_desc = models.CharField(max_length=1024)
 	recruit_fields = models.CharField(max_length=512)
 
 	supervision_status = models.CharField(max_length=255)
@@ -54,6 +54,9 @@ class Project(models.Model):
 	speed_type = models.CharField(max_length=255)
 	account_contact = models.CharField(max_length=255)
 	eng_dev_communities = models.CharField(max_length=255)
+
+	assigned = models.BooleanField(default=False)
+	assigned_student = models.OneToOneField(Student, on_delete=models.SET_NULL, null=True)
 
 	def __str__(self):
 		return ' '.join([

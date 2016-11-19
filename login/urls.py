@@ -11,5 +11,8 @@ urlpatterns = [
     url(r'^register/$', views.register),
     url(r'^register/success/$', views.register_success),
     url(r'^home/$', views.home),
+    url(r'^projects/update/(?P<project_id>[0-9]+)$', views.update_project, name='update_project'),
+    url(r'^projects/(?P<project_id>[0-9]+)$', views.project_mgmt, name='project_mgmt'),
+    url(r'^projects/', views.projects_mgmt, name='projects_mgmt'),
 ]
 

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{% load static %}
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="{% static 'submit/style.css' %}">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="http://rickharrison.github.io/validate.js/validate.min.js"></script>
+	</head>
+	<body>
+		<div class="container content">
+			<div class="header">
+			  <div class="jumbotron">
+			  	<div class="row">
+				  	<div class="col-sm-3">
+				  	<a href="https://dlap-web-app.herokuapp.com"><img src="http://www.colorado.edu/activelearningprogram/profiles/express/themes/cusimple/logo.png" height="200" width="200"></a>
+				  	</div>
+				  	<div class="col-sm-9">
+				  		<h1>Discovery Learning Apprenticeship Program</h1>
+				    	<p>UNIVERSITY OF COLORADO <strong>BOULDER</strong></p>
+				  	</div>
+			  	</div>
+			  </div>
+			</div>
+			<div class="body">
+				<div class="panel panel-default" id="primary_faculty_info">
+	    			<div class="panel-heading">Project Information</div>
+			    		<div class="panel-body">
+							<div style="overflow: auto">
+								<p class="col-sm-3" align="right">Project Title:</p>
+								<p class="col-sm-8">{{ project.app_title }}</p>
+							</div>
+							<div style="overflow: auto">
+								<p class="col-sm-3" align="right">Project Description:</p>
+								<p class="col-sm-8">{{ project.full_desc }}</p>
+							</div>
+							<div style="overflow: auto">
+								<p class="col-sm-3" align="right">Primary Faculty Member:</p>
+								<p class="col-sm-8">{{ project.primary_first_name }} {{ project.primary_last_name }}</p>
+							</div>
+							<div style="overflow: auto">
+								<p class="col-sm-3" align="right">Primary Faculty Department:</p>
+								<p class="col-sm-8">{{ project.primary_faculty_dept }}</p>
+							</div>
+				    		<div style="overflow: auto">
+								<p class="col-sm-3" align="right">Associated with Engineering for Develing Communities:</p>
+								<p class="col-sm-8">{{ project.eng_dev_communities }}</p>
+							</div>
+							<div style="overflow: auto">
+								<p class="col-sm-3" align="right">Amount of Supervision Available:</p>
+								<p class="col-sm-8">{{ project.supervision_status }}</p>
+							</div>
+							<div style="overflow: auto">
+								<p class="col-sm-3" align="right">Supervision Provided By:</p>
+								<p class="col-sm-8">{{ project.supervision_contact }}</p>
+							</div>
+							<div style="overflow: auto">
+								<p class="col-sm-3" align="right">Nature of Work:</p>
+								<p class="col-sm-8">{{ project.work_nature }}</p>
+							</div>
+							<div style="overflow: auto">
+								<p class="col-sm-3" align="right">Amount of Prior Work Required:</p>
+								<p class="col-sm-8">{{ project.prior_work }}</p>
+							</div>
+							<div style="overflow: auto">
+								<p class="col-sm-3" align="right">Assignment Status:</p>
+								<p class="col-sm-8">{% if project.assigned %} ASSIGNED {% else %} UNASSIGNED {% endif %}</p>
+							</div>
+							<div style="overflow: auto">
+								<p class="col-sm-3" align="right">Assigned Student:</p>
+								<p class="col-sm-8">{{ project.assigned_student.primary_first_name }} {{project.assigned_student.primary_last_name }}</p>
+							</div>
+						</div>
+					</div>
+					<div>
+						<form class="form-horizontal" action="/mgmt/projects/update/{{ project.id }}" method="POST">
+							<div class="col-sm-8">
+				    			<select class="form-control" name="student_id" id="student_select">
+				    				<option value="NONE">None</option>
+				    				<optgroup label="First Choice Students">
+				    					{% for student in first_choice %}
+				    					<option value="{{ student.id }}" required>{{ student.primary_first_name }} {{ student.primary_last_name }}</option>
+				    					{% endfor %}
+				    				</optgroup>
+				    				<optgroup label="Second Choice Students">
+				    					{% for student in second_choice %}
+				    					<option value="{{ student.id }}" required>{{ student.primary_first_name }} {{ student.primary_last_name }}</option>
+				    					{% endfor %}
+				    				</optgroup>
+				    				<optgroup label="Third Choice Students">
+				    					{% for student in third_choice %}
+				    					<option value="{{ student.id }}" required>{{ student.primary_first_name }} {{ student.primary_last_name }}</option>
+				    					{% endfor %}
+				    				</optgroup>
+				    				<optgroup label="Fourth Choice Students">
+				    					{% for student in fourth_choice %}
+				    					<option value="{{ student.id }}" required>{{ student.primary_first_name }} {{ student.primary_last_name }}</option>
+				    					{% endfor %}
+				    				</optgroup>
+				    				<optgroup label="Fifth Choice Students">
+				    					{% for student in fifth_choice %}
+				    					<option value="{{ student.id }}" required>{{ student.primary_first_name }} {{ student.primary_last_name }}</option>
+				    					{% endfor %}
+				    				</optgroup>
+				    			</select>
+			    			</div>
+			    			<div class="col-sm-4">
+			    				<button class="btn btn-primary btn-large" type="submit">Assign Student</button>
+			    			</div>
+		    			</form>
+		    		</div>
+	    		</div>
+			</div>
+		</div>
+	</body>
+</html>
+
+ 

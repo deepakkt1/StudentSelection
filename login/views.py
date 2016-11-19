@@ -1,8 +1,10 @@
 #views.py
 from login.forms import *
+from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
@@ -69,7 +71,7 @@ def register_success(request):
     return render_to_response(
     'registration/success.html',
     )
- 
+@login_required 
 def logout_page(request):
     logout(request)
     return HttpResponseRedirect('/')
@@ -107,6 +109,56 @@ def home(request):
     return render_to_response(
     'registration/matrix.html',{'students':data,'projects':p2,'names':names,'student':students}
     )
+
+@csrf_exempt
+def projects_mgmt(request):
+	projects = Project.objects.all()
+	return render(request, 'dlap_admin/projects_mgmt.html', {'projects': projects})
+
+@csrf_exempt
+def project_mgmt(request, project_id):
+	project = Project.objects.get(pk=project_id)
+	first_choice = Student.objects.all().filter(project1=project_id, assigned=False)
+	second_choice = Student.objects.all().filter(project2=project_id, assigned=False)
+	third_choice = Student.objects.all().filter(project3=project_id, assigned=False)
+	fourth_choice = Student.objects.all().filter(project4=project_id, assigned=False)
+	fifth_choice = Student.objects.all().filter(project5=project_id, assigned=False)
+	return render(request, 'dlap_admin/project_mgmt.html', 
+		{
+		'project': project, 
+		'first_choice': first_choice,
+		'second_choice': second_choice,
+		'third_choice': third_choice,
+		'fourth_choice': fourth_choice,
+		'fifth_choice': fifth_choice,
+		})
+@csrf_exempt
+def update_project(request, project_id):
+	
+	student_id = request.POST.get('student_id','')
+	
+	if(student_id != "NONE"):
+		student = Student.objects.filter(pk=student_id)
+		student.update(assigned=True)
+		student = Student.objects.get(pk=student_id)
+
+		project = Project.objects.filter(pk=project_id)
+		project.update(assigned=True)
+		project.update(assigned_student=student)
+
+	else:
+		projects = Project.objects.filter(pk=project_id)
+		project = Project.objects.get(pk=project_id)
+
+		project.assigned_student.assigned = False
+		project.assigned_student.save()
+
+		projects.update(assigned=False)
+		projects.update(assigned_student=None)
+
+
+	return HttpResponseRedirect("/client/projects/")
+
 """@login_required
 def home(request):
     return render_to_response(

@@ -28,8 +28,12 @@ class Student(models.Model):
 	prev_app_radio = models.CharField(max_length=255)
 	fall_employment_textarea = models.CharField(max_length=1024)
 	background_chk_radio = models.CharField(max_length=255)
-	project1 = models.CharField(max_length=255)
-	project2 = models.CharField(max_length=255)
-	project3 = models.CharField(max_length=255)
-	project4 = models.CharField(max_length=255)
-	project5 = models.CharField(max_length=255)
+	
+	project1 = models.CharField(max_length=12, null=True)
+	project2 = models.CharField(max_length=12, null=True)
+	project3 = models.CharField(max_length=12, null=True)
+	project4 = models.CharField(max_length=12, null=True)
+	project5 = models.CharField(max_length=12, null=True)
+
+	assigned = models.BooleanField(default=False)
+	classification = models.CharField(max_length=64, default="CLASS 1")

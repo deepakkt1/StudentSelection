@@ -25,13 +25,16 @@
 			</div>
 			<div class="body" align=center>
 {% block content %}
+<table>
     <form method="post" action=".">{% csrf_token %}
-        <table border="0">
+        <table border="0" style="border-spacing: 8px; border-collapse: separate;">
             {{ form.as_table }}
+<tr><th></br></th></tr>
         </table>
-        <input class="btn btn-primary btn-large home-btn"  type="submit" value="Register" />
+        <input style="height:40px;width:150px" class="btn btn-primary btn-large home-btn"  type="submit" value="Register" />
     </form>
-    <a href="{% url 'client' %}"><button class="btn btn-primary btn-large home-btn">Client login</button></a>
+    <a href="{% url 'client' %}"><button style="height:40px;width:150px" class="btn btn-primary btn-large home-btn">Client login</button></a>
+</table>
 {% endblock %}
 </div>
 </html>

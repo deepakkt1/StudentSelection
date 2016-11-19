@@ -44,9 +44,9 @@
 							{% if forloop.first %}							
 							<td bgcolor="#A9A9A9">{{ i }}</td>
 							{% elif i > 0 and i < 5 %}							
-							<td bgcolor="#228B22">{{ i }}</td>	
+							<td class="success">{{ i }}</td>	
 							{% else %}
-							<td class="info">{{ i }}</td>	
+							<td class="danger">{{ i }}</td>	
 							{% endif %}
 						{% endfor %}
 				{% endfor %}
@@ -68,8 +68,6 @@
 					<th>Student Department</th>
 					<th>GPA</th>
 					<th>School Level</th>
-					<th>Research</th>
-					<th>Last 4 SSN</th>
 				</tr>
 				{% for pro in student %}
 				<tr>
@@ -83,13 +81,14 @@
 					<td>{{ pro.student_department }} </td>
 					<td>{{ pro.gpa }}</td>
 					<td>{{ pro.school_level_select }}</td>
-					<td>{{ pro.optradio_research }}</td>
-					<td>{{ pro.last_digits_ssn }}</td>
 				</tr>
 				{% endfor %}
 			</table>
 				</div>
 
 		</div>
-<a href="/client/logout"><button class="btn btn-primary btn-large home-btn">Logout</button></a>
-	</body>
+<div align=center>
+<a align=left href="/client/logout"><button style="height:50px;width:200px" class="btn btn-primary btn-large home-btn">Logout</button></a>
+<a align=right href="/client/projects"><button style="height:50px;width:200px" class="btn btn-primary btn-large home-btn">Manage projects</button></a>
+		</div>	
+		</body>

@@ -29,15 +29,22 @@
     {% if form.errors %}
         <p>Your username and password didn't match. Please try again.</p>
     {% endif %}
+<table border ="1">
     <form method="post" action=".">{% csrf_token %}
         <table border="0">
             <tr><th><label for="id_username">Username:</label></th><td>{{ form.username }}</td></tr>
+<tr><th></br></th></tr>
             <tr><th><label for="id_password">Password:</label></th><td>{{ form.password }}</td></tr>
+	    <tr></tr>
         </table>
-        <input class="btn btn-primary btn-large home-btn" type="submit" value="Login" />
+</br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input align=center style="height:40px;width:150px"  class="btn btn-primary btn-large home-btn" type="submit" value="Login" />
         <input type="hidden" name="next" value="home" />
     </form>
-    <a href="register"><button class="btn btn-primary btn-large home-btn">Client Register</button></a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="register"><button align=center  style="height:40px;width:150px" class="btn btn-primary btn-large home-btn">Client Register</button></a>
+</table>
 {% endblock %}
 
 		</div>
