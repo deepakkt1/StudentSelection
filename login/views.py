@@ -110,11 +110,13 @@ def home(request):
     'registration/matrix.html',{'students':data,'projects':p2,'names':names,'student':students}
     )
 
+@login_required
 @csrf_exempt
 def projects_mgmt(request):
 	projects = Project.objects.all()
 	return render(request, 'dlap_admin/projects_mgmt.html', {'projects': projects})
 
+@login_required
 @csrf_exempt
 def project_mgmt(request, project_id):
 	project = Project.objects.get(pk=project_id)
@@ -132,6 +134,7 @@ def project_mgmt(request, project_id):
 		'fourth_choice': fourth_choice,
 		'fifth_choice': fifth_choice,
 		})
+@login_required
 @csrf_exempt
 def update_project(request, project_id):
 	
