@@ -10,6 +10,7 @@ from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from submit.models import Project
 from student.models import Student
+import logging
 
 @csrf_protect
 def register(request):
@@ -114,17 +115,41 @@ def home(request):
 @csrf_exempt
 def projects_mgmt(request):
 	projects = Project.objects.all()
+	students = Student.objects.all()
+	removep=[]
+	for project in projects:
+		hasStudents="False"
+		for student in students:
+			if not student.project1 == "N/A":
+				if int(student.project1) == int(project.id):
+					hasStudents="True"					
+			if not student.project2 == "N/A":
+				if int(student.project2) == int(project.id):
+					hasStudents="True"					
+			if not student.project3 == "N/A":
+				if int(student.project3) == int(project.id):
+					hasStudents="True"					
+			if not student.project4 == "N/A":
+				if int(student.project4) == int(project.id):
+					hasStudents="True"					
+			if not student.project5 == "N/A":
+				if int(student.project5) == int(project.id):
+					hasStudents="True"					
+		if(hasStudents == "False"):
+			removep.append(project.app_title)
+	for ite in removep:
+		projects=projects.exclude(app_title=ite)
 	return render(request, 'dlap_admin/projects_mgmt.html', {'projects': projects})
 
 @login_required
 @csrf_exempt
 def project_mgmt(request, project_id):
 	project = Project.objects.get(pk=project_id)
-	first_choice = Student.objects.all().filter(project1=project_id, assigned=False)
-	second_choice = Student.objects.all().filter(project2=project_id, assigned=False)
-	third_choice = Student.objects.all().filter(project3=project_id, assigned=False)
-	fourth_choice = Student.objects.all().filter(project4=project_id, assigned=False)
-	fifth_choice = Student.objects.all().filter(project5=project_id, assigned=False)
+	first_choice = Student.objects.all().filter(project1=project_id, assigned=False, gpa__gte =3)
+	second_choice = Student.objects.all().filter(project2=project_id, assigned=False, gpa__gte =3)
+	third_choice = Student.objects.all().filter(project3=project_id, assigned=False, gpa__gte =3)
+	fourth_choice = Student.objects.all().filter(project4=project_id, assigned=False, gpa__gte =3)
+	fifth_choice = Student.objects.all().filter(project5=project_id, assigned=False, gpa__gte =3)
 	return render(request, 'dlap_admin/project_mgmt.html', 
 		{
 		'project': project, 

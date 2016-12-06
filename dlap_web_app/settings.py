@@ -32,7 +32,6 @@ INSTALLED_APPS = [
     'submit',
     'student',
     'login',
-    'dlap_admin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
