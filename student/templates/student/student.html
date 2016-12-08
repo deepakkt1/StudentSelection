@@ -345,10 +345,10 @@
 										<div class="col-sm-8" align = left>
 <input type="hidden" id="proj1final" class="proj1final" name="proj1final" value="True">
 											<select class="form-control" id="project1" onChange="p1();" name="project1"  value="" required>
-												<option value="">Please Select</option>
+												<option value="" data-project1="0">Please Select</option>
 												{% for pro in project %}
 				{%  if pro.app_title %}								
-<option class="project1req" id="{{ pro.id }}" name = "{{ pro.id }}" value = "{{ pro.id }}" data-project1 = "{{ pro.special_reqs }}" > {{ pro.app_title }}</option>
+<option class="project1req" name = "{{ pro.id }}" value = "{{ pro.id }}" {%  if pro.special_reqs %} data-project1 ="1" {% else %} data-project1 ="0" {% endif %}> {{ pro.app_title }}</option>
 {% endif %}
 {%  endfor %}	
 											</select>
@@ -362,11 +362,11 @@
 										<div class="col-sm-8">
 <input type="hidden" id="proj2final" class="proj2final" name="proj2final" value="True">
 
-											<select class="form-control" id="project2" onChange="p2();" name="project2">
-												<option value="0">Please Select</option>
+											<select class="form-control" id="project2" onChange="p2();" name="project2" value="">
+												<option value="0" data-project2 ="0">Please Select</option>
 												{% for pro in project %}
 				{%  if pro.app_title %}								
-<option id="project2req" name = "{{ pro.id }}" value = "{{ pro.id }}" data-project2 = "{{ pro.special_reqs }}" > {{ pro.app_title }}</option>
+<option class="project2req" name = "{{ pro.id }}" value = "{{ pro.id }}" {%  if pro.special_reqs %} data-project2 ="1" {% else %} data-project2 ="0" {% endif %}> {{ pro.app_title }}</option>
 {% endif %}
 {%  endfor %}	
 											</select>
@@ -381,10 +381,10 @@
 <input type="hidden" id="proj3final" class="proj3final" name="proj3final" value="True">
 
 											<select class="form-control" id="project3" onChange="p3();" name="project3">
-												<option value="0">Please Select</option>
+												<option value="0" data-project3="0" >Please Select</option>
 												{% for pro in project %}
 				{%  if pro.app_title %}								
-<option id="project3req" name = "{{ pro.id }}" value = "{{ pro.id }}" data-project3 = "{{ pro.special_reqs }}" > {{ pro.app_title }}</option>
+<option name = "{{ pro.id }}" class="project3req" value = "{{ pro.id }}" {%  if pro.special_reqs %} data-project3 ="1" {% else %} data-project3 ="0" {% endif %} > {{ pro.app_title }}</option>
 {% endif %}
 {%  endfor %}	
 											</select>
@@ -401,10 +401,10 @@
 
 											<select class="form-control" id="project4" onChange="p4();" name="project4">
 
-<option value="0">Please Select</option>
+<option value="0" data-project4 = "0" >Please Select</option>
 												{% for pro in project %}
 				{%  if pro.app_title %}								
-<option id="project4req" name = "{{ pro.id }}" value = "{{ pro.id }}" data-project4 = "{{ pro.special_reqs }}" > {{ pro.app_title }}</option>
+<option class="project4req" name = "{{ pro.id }}" value = "{{ pro.id }}" {%  if pro.special_reqs %} data-project4 ="1" {% else %} data-project4 ="0" {% endif %} > {{ pro.app_title }}</option>
 {% endif %}
 {%  endfor %}		
 											</select>
@@ -419,11 +419,11 @@
 <input type="hidden" id="proj5final" class="proj5final" name="proj5final" value="True">
 
 											<select class="form-control" id="project5" onChange="p5();" name="project5">
-												<option value="0">Please Select</option>
+												<option value="0" data-project5 ="0" >Please Select</option>
 
 {% for pro in project %}
 				{%  if pro.app_title %}								
-<option id="project5req" name = "{{ pro.id }}" value = "{{ pro.id }}" data-project5 = "{{ pro.special_reqs }}" > {{ pro.app_title }}</option>
+<option id="{{ pro.id }}" class="project5req" name = "{{ pro.id }}" value = "{{ pro.id }}" {%  if pro.special_reqs %} data-project5 ="1" {% else %} data-project5 ="0" {% endif %}  > {{ pro.app_title }}</option>
 {% endif %}
 {%  endfor %}											</select>
 										</div>
@@ -577,77 +577,62 @@ function validatechecks(){
 function p1(){
 	var selection=document.getElementById("project1").value;
 	var e = document.getElementById("project1");
-	var value = document.getElementById(e.options[e.selectedIndex].id).dataset.project1;
+	var value = e.options[e.selectedIndex].dataset.project1;
 	var requirements = value;
-	if(selection=="" || requirements.length==0){
-	$("#response1").empty();
-	}else{
-	requirements = requirements.toString().split(".");
-	$("#response1").empty();
-	for( i =0;i<requirements.length-1;i++){
-	$('#response1').append("</br><input type=checkbox class=p1req >"+requirements[i]);
-	}
+	if(requirements=="0"){
+		$("#response1").empty();
+	}else if(requirements=="1"){
+		$("#response1").empty();
+		$('#response1').append("<input type=checkbox class=p1req >"+" I fulfill all requirements");
 	}
 }
 function p2(){
 	var selection=document.getElementById("project2").value;
 	var e = document.getElementById("project2");
-	var value = document.getElementById(e.options[e.selectedIndex].id).dataset.project2;
+	var value = e.options[e.selectedIndex].dataset.project2;
 	var requirements = value;
-	if(selection=="" || requirements.length==0){
-	$("#response2").empty();
-	}else{
-	requirements = requirements.toString().split(".");
-	$("#response2").empty();
-	for( i =0;i<requirements.length-1;i++){
-	$('#response2').append("</br><input type=checkbox class=p2req >"+requirements[i]);
+	if(requirements=="0"){
+		$("#response2").empty();
+	}else if(requirements=="1"){
+		$("#response2").empty();
+		$('#response2').append("<input type=checkbox class=p2req >"+" I fulfill all requirements");
 	}
-}
 }
 function p3(){
 	var selection=document.getElementById("project3").value;
 	var e = document.getElementById("project3");
-	var value = document.getElementById(e.options[e.selectedIndex].id).dataset.project3;
+	var value = e.options[e.selectedIndex].dataset.project3;
 	var requirements = value;
-	if(selection=="" || requirements.length==0){
-	$("#response3").empty();
-	}else{
-	requirements = requirements.toString().split(".");
-	$("#response3").empty();
-	for( i =0;i<requirements.length-1;i++){
-	$('#response3').append("</br><input type=checkbox class=p3req >"+requirements[i]);
+	if(requirements=="0"){
+		$("#response3").empty();
+	}else if(requirements=="1"){
+		$("#response3").empty();
+		$('#response3').append("<input type=checkbox class=p3req >"+" I fulfill all requirements");
 	}
-}
 }
 function p4(){
 	var selection=document.getElementById("project4").value;
 	var e = document.getElementById("project4");
-	var value = document.getElementById(e.options[e.selectedIndex].id).dataset.project4;
+	var value = e.options[e.selectedIndex].dataset.project4;
 	var requirements = value;
-	if(selection=="" || requirements.length==0){
-	$("#response4").empty();
-	}else{
-	requirements = requirements.toString().split(".");
-	$("#response4").empty();
-	for( i =0;i<requirements.length-1;i++){
-	$('#response4').append("</br><input type=checkbox class=p4req >"+requirements[i]);
+	if(requirements=="0"){
+		$("#response4").empty();
+	}else if(requirements=="1"){
+		$("#response4").empty();
+		$('#response4').append("<input type=checkbox class=p4req >"+" I fulfill all requirements");
 	}
-}
 }
 function p5(){
-	var selection=document.getElementById("project5").value;
+var selection=document.getElementById("project5").value;
 	var e = document.getElementById("project5");
-	var value = document.getElementById(e.options[e.selectedIndex].id).dataset.project5;
+	var value = e.options[e.selectedIndex].dataset.project5;
 	var requirements = value;
-	if(selection=="" || requirements.length==0){
-	$("#response5").empty();
-	}else{
-	requirements = requirements.toString().split(".");
-	$("#response5").empty();
-	for( i =0;i<requirements.length-1;i++){
-	$('#response5').append("</br><input type=checkbox class=p5req >"+requirements[i]);
+	if(requirements=="0"){
+		$("#response5").empty();
+	}else if(requirements=="1"){
+		$("#response5").empty();
+		$('#response5').append("<input type=checkbox class=p5req >"+" I fulfill all requirements");
 	}
-}
 }
 </script>
 	</body>
