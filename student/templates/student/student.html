@@ -348,7 +348,7 @@
 												<option value="" data-project1="0">Please Select</option>
 												{% for pro in project %}
 				{%  if pro.app_title %}								
-<option class="project1req" name = "{{ pro.id }}" value = "{{ pro.id }}" {%  if pro.special_reqs %} data-project1 ="1" {% else %} data-project1 ="0" {% endif %}> {{ pro.app_title }}</option>
+<option class="project1req" name = "{{ pro.id }}" value = "{{ pro.id }}" {%  if pro.special_reqs %} data-project1 ="{{ pro.special_reqs }}" {% else %} data-project1 ="0" {% endif %}> {{ pro.app_title }}</option>
 {% endif %}
 {%  endfor %}	
 											</select>
@@ -366,7 +366,7 @@
 												<option value="0" data-project2 ="0">Please Select</option>
 												{% for pro in project %}
 				{%  if pro.app_title %}								
-<option class="project2req" name = "{{ pro.id }}" value = "{{ pro.id }}" {%  if pro.special_reqs %} data-project2 ="1" {% else %} data-project2 ="0" {% endif %}> {{ pro.app_title }}</option>
+<option class="project2req" name = "{{ pro.id }}" value = "{{ pro.id }}" {%  if pro.special_reqs %} data-project2 ="{{ pro.special_reqs }}" {% else %} data-project2 ="0" {% endif %}> {{ pro.app_title }}</option>
 {% endif %}
 {%  endfor %}	
 											</select>
@@ -384,7 +384,7 @@
 												<option value="0" data-project3="0" >Please Select</option>
 												{% for pro in project %}
 				{%  if pro.app_title %}								
-<option name = "{{ pro.id }}" class="project3req" value = "{{ pro.id }}" {%  if pro.special_reqs %} data-project3 ="1" {% else %} data-project3 ="0" {% endif %} > {{ pro.app_title }}</option>
+<option name = "{{ pro.id }}" class="project3req" value = "{{ pro.id }}" {%  if pro.special_reqs %} data-project3 ="{{ pro.special_reqs }}" {% else %} data-project3 ="0" {% endif %} > {{ pro.app_title }}</option>
 {% endif %}
 {%  endfor %}	
 											</select>
@@ -404,7 +404,7 @@
 <option value="0" data-project4 = "0" >Please Select</option>
 												{% for pro in project %}
 				{%  if pro.app_title %}								
-<option class="project4req" name = "{{ pro.id }}" value = "{{ pro.id }}" {%  if pro.special_reqs %} data-project4 ="1" {% else %} data-project4 ="0" {% endif %} > {{ pro.app_title }}</option>
+<option class="project4req" name = "{{ pro.id }}" value = "{{ pro.id }}" {%  if pro.special_reqs %} data-project4 ="{{ pro.special_reqs }}" {% else %} data-project4 ="0" {% endif %} > {{ pro.app_title }}</option>
 {% endif %}
 {%  endfor %}		
 											</select>
@@ -423,7 +423,7 @@
 
 {% for pro in project %}
 				{%  if pro.app_title %}								
-<option id="{{ pro.id }}" class="project5req" name = "{{ pro.id }}" value = "{{ pro.id }}" {%  if pro.special_reqs %} data-project5 ="1" {% else %} data-project5 ="0" {% endif %}  > {{ pro.app_title }}</option>
+<option id="{{ pro.id }}" class="project5req" name = "{{ pro.id }}" value = "{{ pro.id }}" {%  if pro.special_reqs %} data-project5 ="{{ pro.special_reqs }}" {% else %} data-project5 ="0" {% endif %}  > {{ pro.app_title }}</option>
 {% endif %}
 {%  endfor %}											</select>
 										</div>
@@ -581,9 +581,12 @@ function p1(){
 	var requirements = value;
 	if(requirements=="0"){
 		$("#response1").empty();
-	}else if(requirements=="1"){
+	}else	{
+	requirements=requirements.toString().split(".");
 		$("#response1").empty();
-		$('#response1').append("<input type=checkbox class=p1req >"+" I fulfill all requirements");
+		for(var i=0;i<requirements.length-1;i++){
+		$('#response1').append("<input type=checkbox class=p1req >"+requirements[i]);
+	}
 	}
 }
 function p2(){
@@ -593,9 +596,12 @@ function p2(){
 	var requirements = value;
 	if(requirements=="0"){
 		$("#response2").empty();
-	}else if(requirements=="1"){
-		$("#response2").empty();
-		$('#response2').append("<input type=checkbox class=p2req >"+" I fulfill all requirements");
+	}else{
+	$("#response2").empty();
+	requirements=requirements.toString().split(".");	
+	for(var i=0;i<requirements.length-1;i++){
+	$('#response2').append("<input type=checkbox class=p2req >"+requirements[i]);
+	}
 	}
 }
 function p3(){
@@ -605,10 +611,13 @@ function p3(){
 	var requirements = value;
 	if(requirements=="0"){
 		$("#response3").empty();
-	}else if(requirements=="1"){
+	}else {
 		$("#response3").empty();
-		$('#response3').append("<input type=checkbox class=p3req >"+" I fulfill all requirements");
+requirements=requirements.toString().split(".");	
+	for(var i=0;i<requirements.length-1;i++){
+			$('#response3').append("<input type=checkbox class=p3req >"+requirements[i]);
 	}
+}
 }
 function p4(){
 	var selection=document.getElementById("project4").value;
@@ -617,10 +626,13 @@ function p4(){
 	var requirements = value;
 	if(requirements=="0"){
 		$("#response4").empty();
-	}else if(requirements=="1"){
+	}else{
 		$("#response4").empty();
-		$('#response4').append("<input type=checkbox class=p4req >"+" I fulfill all requirements");
+requirements=requirements.toString().split(".");	
+	for(var i=0;i<requirements.length-1;i++){
+		$('#response4').append("<input type=checkbox class=p4req >"+requirements[i]);
 	}
+}
 }
 function p5(){
 var selection=document.getElementById("project5").value;
@@ -629,10 +641,13 @@ var selection=document.getElementById("project5").value;
 	var requirements = value;
 	if(requirements=="0"){
 		$("#response5").empty();
-	}else if(requirements=="1"){
+	}else{
 		$("#response5").empty();
-		$('#response5').append("<input type=checkbox class=p5req >"+" I fulfill all requirements");
+requirements=requirements.toString().split(".");	
+	for(var i=0;i<requirements.length-1;i++){
+		$('#response5').append("<input type=checkbox class=p5req >"+requirements[i]);
 	}
+}
 }
 </script>
 	</body>
