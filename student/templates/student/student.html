@@ -284,19 +284,41 @@
 					    	<div class="panel-heading">Apprenticeship Information</div>
 			    			<div class="panel-body">
 			    				<div class="control-label form-group">
-									<label for="prev_app_radio" class="col-sm-3">Have you applied for a Discovery Learning Apprenticeship before?:</label>
+									<label for="prev_app_radio" class="col-sm-3"><span style="color: #ff0000">*</span>Have you applied for a Discovery Learning Apprenticeship before?:</label>
 									<div class="radio col-sm-8" id="prev_app_radio" align = left>
 										<div>
-											<label class="radio-inline"><input type="radio" name="prev_app_radio">Yes</label>
+											<label class="radio-inline"><input type="radio" name="prev_app" value="Yes" required>Yes</label>
 										</div>
 										<div>
-											<label class="radio-inline"><input type="radio" name="prev_app_radio">Not sure</label>
+											<label class="radio-inline"><input type="radio" name="prev_app"  value="Not sure" required>Not sure</label>
 										</div>
 										<div>
-											<label class="radio-inline"><input type="radio" name="prev_app_radio">No</label>
+											<label class="radio-inline"><input type="radio" name="prev_app"  value="No" required>No</label>
 										</div>
 									</div>
 								</div>
+							<div class="control-label form-group">
+									<label for="prev_work_radio" class="col-sm-3"><span style="color: #ff0000">*</span>Were you offered -Discovery Learning Apprenticeship before?:</label>
+									<div class="radio col-sm-8" id="prev_work_radio" align = left>
+										<div>
+											<label class="radio-inline"><input type="radio" name="prev_work" value="Yes" required>Yes</label>
+										</div>
+										<div>
+											<label class="radio-inline"><input type="radio" name="prev_work" value="No" required>No</label>
+										</div>
+									</div>
+								</div>
+							<div class="control-label form-group">
+									<label for="full_year_avail" class="col-sm-3"><span style="color: #ff0000">*</span>Are you able to serve all year(not just one semester -e.g., no Study early, Abroad graduation, etc.):</label>
+									<div class="radio col-sm-8" id="full_year_avail" align = left>
+										<div>
+											<label class="radio-inline"><input type="radio" name="full_year_avail" value="True" required>Yes</label>
+										</div>
+										<div>
+											<label class="radio-inline"><input type="radio" name="full_year_avail" value="False" required>No</label>
+										</div>
+									</div>
+							</div>
 								<div class="control-label form-group">
 									<label for="fall_employment_textarea" class="col-sm-3">Other Fall Employment Planned:</label>
 									<div class="col-sm-8">
@@ -321,69 +343,94 @@
 									<div class="contol-label form-group">
 										<label for="project1" class="col-sm-3" align = right><span style="color: #ff0000">*</span>1:</label>
 										<div class="col-sm-8" align = left>
-											<select class="form-control" id="project1" name="project1"  required>
+<input type="hidden" id="proj1final" class="proj1final" name="proj1final" value="True">
+											<select class="form-control" id="project1" onChange="p1();" name="project1"  value="" required>
 												<option value="">Please Select</option>
 												{% for pro in project %}
 				{%  if pro.app_title %}								
-<option name = {{ pro.id }} value = {{ pro.id }}> {{ pro.app_title }}</option>
+<option id="project1req" name = {{ pro.id }} value = {{ pro.id }} data-project1={{ pro.special_reqs }}> {{ pro.app_title }}</option>
 {% endif %}
 {%  endfor %}	
 											</select>
 										</div>
+										
 									</div>
+										<div align=center id="response1">
+										</div>
 									<div class="contol-label form-group">
 										<label for="project2" class="col-sm-3" align = right>2:</label>
 										<div class="col-sm-8">
-											<select class="form-control" id="project2" name="project2">
+<input type="hidden" id="proj2final" class="proj2final" name="proj2final" value="True">
+
+											<select class="form-control" id="project2" onChange="p2();" name="project2">
 												<option value="0">Please Select</option>
 												{% for pro in project %}
 				{%  if pro.app_title %}								
-<option name = {{ pro.id }} value = {{ pro.id }}> {{ pro.app_title }}</option>
+<option id="project2req" name = {{ pro.id }} value = {{ pro.id }} data-project2={{ pro.special_reqs }}> {{ pro.app_title }}</option>
 {% endif %}
 {%  endfor %}	
 											</select>
 										</div>
 									</div>
+										<div align=center id="response2">
+										</div>
+
 									<div class="contol-label form-group">
 										<label for="project3" class="col-sm-3" align = right>3:</label>
 										<div class="col-sm-8">
-											<select class="form-control" id="project3" name="project3">
+<input type="hidden" id="proj3final" class="proj3final" name="proj3final" value="True">
+
+											<select class="form-control" id="project3" onChange="p3();" name="project3">
 												<option value="0">Please Select</option>
 												{% for pro in project %}
 				{%  if pro.app_title %}								
-<option name = {{ pro.id }} value = {{ pro.id }}> {{ pro.app_title }}</option>
+<option id="project3req" name = {{ pro.id }} value = {{ pro.id }} data-project3={{ pro.special_reqs }}> {{ pro.app_title }}</option>
 {% endif %}
 {%  endfor %}	
 											</select>
 										</div>
 									</div>
+
+										<div align=center id="response3">
+										</div>
+
 									<div class="contol-label form-group">
 										<label for="project4" class="col-sm-3" align = right>4:</label>
 										<div class="col-sm-8">
-											<select class="form-control" id="project4" name="project4">
+<input type="hidden" id="proj4final" class="proj4final" name="proj4final" value="True">
+
+											<select class="form-control" id="project4" onChange="p4();" name="project4">
 
 <option value="0">Please Select</option>
 												{% for pro in project %}
 				{%  if pro.app_title %}								
-<option name = {{ pro.id }} value = {{ pro.id }}> {{ pro.app_title }}</option>
+<option id="project4req" name = {{ pro.id }} value = {{ pro.id }} data-project4={{ pro.special_reqs }}> {{ pro.app_title }}</option>
 {% endif %}
 {%  endfor %}		
 											</select>
 										</div>
 									</div>
+										<div align=center id="response4">
+										</div>
+
 									<div class="contol-label form-group">
 										<label for="project5" class="col-sm-3" align = right>5:</label>
 										<div class="col-sm-8">
-											<select class="form-control" id="project5" name="project5">
+<input type="hidden" id="proj5final" class="proj5final" name="proj5final" value="True">
+
+											<select class="form-control" id="project5" onChange="p5();" name="project5">
 												<option value="0">Please Select</option>
 
 {% for pro in project %}
 				{%  if pro.app_title %}								
-<option name = {{ pro.id }} value = {{ pro.id }}> {{ pro.app_title }}</option>
+<option id="project5req" name = {{ pro.id }} value = {{ pro.id }} data-project5={{ pro.special_reqs }}> {{ pro.app_title }}</option>
 {% endif %}
 {%  endfor %}											</select>
 										</div>
 									</div>
+										<div align=center id="response5">
+										</div>
+
 					    		</div>
 				    		</div>
 				    		<div class="control-label form-group">
@@ -404,13 +451,13 @@
 								<label for="discrimination_training_chk_radio" class="col-sm-3">Have you had Discrimination and Harassment Awareness training yet (at CU)? If yes when? (Take your best guess if you aren't sure.</label>
 								<div class="radio col-sm-8" id="discrimination_training_chk_radio" align = left>
 									<div>
-										<label class="radio-inline"><input type="radio" name="optradio">Yes</label>
+										<label class="radio-inline"><input type="radio" name="discrimination_training" value="Yes" >Yes</label>
 									</div>
 									<div>
-										<label class="radio-inline"><input type="radio" name="optradio">Not sure</label>
+										<label class="radio-inline"><input type="radio" name="discrimination_training" value="Not sure" >Not sure</label>
 									</div>
 									<div>
-										<label class="radio-inline"><input type="radio" name="optradio">No</label>
+										<label class="radio-inline"><input type="radio" name="discrimination_training"  value="No" >No</label>
 									</div>
 								</div>
 							</div>
@@ -482,11 +529,116 @@
 				    		</div>
 			    		</div>
 			    		<div class="button">
-					  		<button type="submit" class="btn btn-primary btn-large">Submit</button>
+					  		<button type="submit" onclick="validatechecks();" class="btn btn-primary btn-large">Submit</button>
 					  	</div>
 					</form>
 				</div>
 			</div>
 		</div>
+<script>
+function validatechecks(){
+	var p1=document.getElementsByClassName("p1req");
+	for(i =0;i<p1.length;i++){
+		if(!p1[i].checked){
+		document.getElementById('proj1final').value="False";
+		break;
+		}
+	}
+	var p2=document.getElementsByClassName("p2req");
+	for(i =0;i<p2.length;i++){
+		if(!p2[i].checked){
+		document.getElementById('proj2final').value="False";
+		break;
+		}
+	}
+	var p3=document.getElementsByClassName("p3req");
+	for(i =0;i<p3.length;i++){
+		if(!p3[i].checked){
+		document.getElementById('proj3final').value="False";
+		break;
+		}
+	}
+	var p4=document.getElementsByClassName("p4req");
+	for(i =0;i<p4.length;i++){
+		if(!p4[i].checked){
+		document.getElementById('proj4final').value="False";
+		break;
+		}
+	}
+	var p5=document.getElementsByClassName("p5req");
+	for(i =0;i<p5.length;i++){
+		if(!p5[i].checked){
+		document.getElementById('proj5final').value="False";
+		break;
+		}
+	}
+
+}
+function p1(){
+	var selection=document.getElementById("project1").value;
+	var ind_id = document.getElementById("project1req").data-project1;
+	if(selection=="" || ind_id.toString().length==0){
+	$("#response1").empty();
+	}else{
+	var requirements = ind_id.toString().split("\n");
+	$("#response1").empty();
+	for( i =0;i<requirements.length;i++){
+	$('#response1').append("<input type=checkbox class=p1req >"+requirements[i]);
+	}
+	}
+}
+function p2(){
+	var selection=document.getElementById("project2").value;
+	var ind_id = document.getElementById("project2req").data-project2;
+	if(selection=="0"|| ind_id.toString().length==0){
+	$("#response2").empty();
+	}else{
+	var requirements = ind_id.toString().split("\n");
+	$("#response2").empty();
+	for( i =0;i<requirements.length;i++){
+	$('#response2').append("<input type=checkbox class=p2req >"+requirements[i]);
+	}
+}
+}
+function p3(){
+	var selection=document.getElementById("project3").value;
+	var ind_id = document.getElementById("project3req").data-project3;
+	if(selection=="0"|| ind_id.toString().length==0){
+	$("#response3").empty();
+	}else{
+	var requirements = ind_id.toString().split("\n");
+	$("#response3").empty();
+	for( i =0;i<requirements.length;i++){
+	$('#response3').append("<input type=checkbox class=p3req >"+requirements[i]);
+	}
+}
+}
+function p4(){
+	var selection=document.getElementById("project4").value;
+	var ind_id = document.getElementById("project4req").data-project4;
+	if(selection=="0"|| ind_id.toString().length==0){
+	$("#response4").empty();
+	}else{
+	var requirements = ind_id.toString().split("\n");
+	$("#response4").empty();
+	for( i =0;i<requirements.length;i++){
+	$('#response4').append("<input type=checkbox class=p4req >"+requirements[i]);
+	}
+}
+}
+function p5(){
+	var selection=document.getElementById("project5").value;
+	var ind_id = document.getElementById("project5req").data-project4;
+	if(selection=="0"|| ind_id.toString().length==0){
+	$("#response5").empty();
+	}else{
+	var requirements = ind_id.toString().split("\n");
+	$("#response5").empty();
+	for( i =0;i<requirements.length;i++){
+	$('#response5').append("<input type=checkbox class=p5req >"+requirements[i]);
+	}
+}
+}
+</script>
 	</body>
 </html>

@@ -17,6 +17,7 @@ def student(request):
 
 @csrf_exempt
 def studinfo(request):
+	cfactor=0
 	fname = request.POST.get('primary_first_name', "N/A");
 	lname = request.POST.get('primary_last_name', "N/A");
 	optradio = request.POST.get('optradio',"N/A");
@@ -37,9 +38,16 @@ def studinfo(request):
 	summer_email = request.POST.get('summer_email',"N/A");
 	secondary_major = request.POST.get('secondary_major', "N/A");
 	optradio_research = request.POST.get('optradio_research', "N/A");
-	prev_app_radio = request.POST.get('prev_app_radio', "N/A");
+	prev_app_radio = request.POST.get('prev_app', "N/A");
 	fall_employment_textarea = request.POST.get('fall_employment_textarea', "N/A");
 	background_chk_radio = request.POST.get('background_chk_radio',"N/A");
+	project1requirements = request.POST.get('proj1final',"N/A");
+	project2requirements = request.POST.get('proj2final',"N/A");
+	project3requirements = request.POST.get('proj3final',"N/A");
+	project4requirements = request.POST.get('proj4final',"N/A");
+	project5requirements = request.POST.get('proj5final',"N/A");
+	full_year_avail = request.POST.get('full_year_avail',"N/A");
+	prev_work = request.POST.get('prev_work',"N/A");
 	resume =  request.FILES.get('resume');
 	coverletter = request.FILES.get('coverletter');
 	project1 = request.POST.get('project1',"N/A");
@@ -47,6 +55,15 @@ def studinfo(request):
 	project3 = request.POST.get('project3',"N/A");
 	project4 = request.POST.get('project4',"N/A");
 	project5 = request.POST.get('project5',"N/A");
+	discrimination_training = request.POST.get('discrimination_training',"N/A");
+	if(optradio=="Female"):
+		cfactor+=1
+	if('BA' in ethnic_radio or 'NHPS' in ethnic_radio or 'AN' in ethnic_radio):
+		cfactor+=1
+	if(prev_app_radio == "Yes"):
+		cfactor+=1
+	if(school_level_select =="5th year Senior"):
+		cfactor+=1
 	student = Student(
 		primary_first_name = fname, 
 		primary_last_name = lname, 
@@ -72,6 +89,15 @@ def studinfo(request):
 		resume = resume,
 		coverletter = coverletter,
 		background_chk_radio = background_chk_radio,
+		project1requirements = project1requirements,
+		project2requirements = project2requirements,
+		project3requirements = project3requirements,
+		project4requirements = project4requirements,
+		project5requirements = project5requirements,
+		full_year_avail = full_year_avail,
+		prev_work = prev_work,
+		discrimination_training=discrimination_training,
+		cfactor=cfactor,
 		project1 = project1,
 		project2 = project2,
 		project3 = project3,

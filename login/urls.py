@@ -14,5 +14,7 @@ urlpatterns = [
     url(r'^projects/update/(?P<project_id>[0-9]+)$', views.update_project, name='update_project'),
     url(r'^projects/(?P<project_id>[0-9]+)$', views.project_mgmt, name='project_mgmt'),
     url(r'^projects/', views.projects_mgmt, name='projects_mgmt'),
+    url(r'^projectsassign/', views.projects_assign, name='projects_assign'),
+    url(r'^downloadmatrix/', views.download_matrix, name='download_matrix'),
 ]
 

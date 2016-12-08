@@ -1,0 +1,71 @@
+	var p1=document.getElementsByClassName("p1req");
+	var notChecked1="true";
+	for(i =0;i<p1.length;i++){
+		if(!p1[i].checked){
+		notChecked1="false";
+		alert("not checked");
+		break;
+		}
+	}
+	if(notChecked1=="true"){
+	$('#response1').append("<input type='text' id='p1req' name='p1reqfinal' value='True'>");
+	}else{
+	$('#response1').append("<input type='text' id='p1req' name='p1reqfinal' value='False'>");
+	}
+
+
+
+
+var p2=document.getElementsByClassName("p2req");
+var notChecked2="true";
+for(i =0;i<p2.length;i++){
+if(!p2[i].checked){
+notChecked2="false";
+break;
+}
+}
+if(notChecked2=="true")
+$('#response2').append("<input type=hidden id=p2req name=p2req value=True>");
+else
+$('#response2').append("<input type=hidden id=p2req name=p2req value=False>");
+
+var p3=document.getElementsByClassName("p3req");
+var notChecked3="true";
+for(i =0;i<p3.length;i++){
+if(!p3[i].checked){
+notChecked3="false";
+break;
+}
+}
+if(notChecked3=="true")
+$('#response3').append("<input type=hidden id=p3req name=p3req value=True>");
+else
+$('#response3').append("<input type=hidden id=p3req name=p3req value=False>");
+
+
+var p4=document.getElementsByClassName("p4req");
+var notChecked4="true";
+for(i =0;i<p4.length;i++){
+if(!p4[i].checked){
+notChecked4="false";
+break;
+}
+}
+if(notChecked4=="true")
+$('#response4').append("<input type=hidden id=p4req name=p4req value=True>");
+else
+$('#response4').append("<input type=hidden id=p4req name=p4req value=False>");
+
+var p5=document.getElementsByClassName("p5req");
+var notChecked5="true";
+for(i =0;i<p5.length;i++){
+if(!p5[i].checked){
+notChecked5="false";
+break;
+}
+}
+if(notChecked5=="true")
+$('#response5').append("<input type=hidden id=p5req name=p5req value=True>");
+else
+$('#response5').append("<input type=hidden id=p5req name=p5req value=False>");
+
