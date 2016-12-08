@@ -335,9 +335,9 @@
 											<span class="style1">Please note that some projects have special requirements that you must meet.</span>
 										</p>
 										<p>
-											To see requirements and longer descriptions of the project, look at the projects available for your major <a href="dlalisting.aspx#GEEN" target="_blank">here.</a>								
+											To see requirements and longer descriptions of the project, look at the projects available for your major <a href="https://www.google.com/" target="_blank">here.</a>								
 										</p>
-										<p>For a full listing of Projects click <a href="">here</a></p>
+										<p>For a full listing of Projects click <a href="https://dlap-web-app.herokuapp.com/">here</a></p>
 										<p>(1 - 5 :: Most Interesting - Least Interesting)</p>
 									</div>
 									<div class="contol-label form-group">
@@ -348,7 +348,7 @@
 												<option value="">Please Select</option>
 												{% for pro in project %}
 				{%  if pro.app_title %}								
-<option id="project1req" name = {{ pro.id }} value = {{ pro.id }} data-project1={{ pro.special_reqs }}> {{ pro.app_title }}</option>
+<option class="project1req" id="{{ pro.id }}" name = "{{ pro.id }}" value = "{{ pro.id }}" data-project1 = "{{ pro.special_reqs }}" > {{ pro.app_title }}</option>
 {% endif %}
 {%  endfor %}	
 											</select>
@@ -366,7 +366,7 @@
 												<option value="0">Please Select</option>
 												{% for pro in project %}
 				{%  if pro.app_title %}								
-<option id="project2req" name = {{ pro.id }} value = {{ pro.id }} data-project2={{ pro.special_reqs }}> {{ pro.app_title }}</option>
+<option id="project2req" name = "{{ pro.id }}" value = "{{ pro.id }}" data-project2 = "{{ pro.special_reqs }}" > {{ pro.app_title }}</option>
 {% endif %}
 {%  endfor %}	
 											</select>
@@ -384,7 +384,7 @@
 												<option value="0">Please Select</option>
 												{% for pro in project %}
 				{%  if pro.app_title %}								
-<option id="project3req" name = {{ pro.id }} value = {{ pro.id }} data-project3={{ pro.special_reqs }}> {{ pro.app_title }}</option>
+<option id="project3req" name = "{{ pro.id }}" value = "{{ pro.id }}" data-project3 = "{{ pro.special_reqs }}" > {{ pro.app_title }}</option>
 {% endif %}
 {%  endfor %}	
 											</select>
@@ -404,7 +404,7 @@
 <option value="0">Please Select</option>
 												{% for pro in project %}
 				{%  if pro.app_title %}								
-<option id="project4req" name = {{ pro.id }} value = {{ pro.id }} data-project4={{ pro.special_reqs }}> {{ pro.app_title }}</option>
+<option id="project4req" name = "{{ pro.id }}" value = "{{ pro.id }}" data-project4 = "{{ pro.special_reqs }}" > {{ pro.app_title }}</option>
 {% endif %}
 {%  endfor %}		
 											</select>
@@ -423,7 +423,7 @@
 
 {% for pro in project %}
 				{%  if pro.app_title %}								
-<option id="project5req" name = {{ pro.id }} value = {{ pro.id }} data-project5={{ pro.special_reqs }}> {{ pro.app_title }}</option>
+<option id="project5req" name = "{{ pro.id }}" value = "{{ pro.id }}" data-project5 = "{{ pro.special_reqs }}" > {{ pro.app_title }}</option>
 {% endif %}
 {%  endfor %}											</select>
 										</div>
@@ -508,7 +508,7 @@
 							                time to construct a well-written cover letter and resume.
 						                </p>
 						                <p>
-							                <a href="Writing Tips for Cover Letters and Resumes.doc" target="_blank">Click Here</a>
+							                <a href="https://www.google.com/" target="_blank">Click Here</a>
 							                <strong> for some tips, which we highly recommend you review before submitting your cover 
 							                letter and resume.</strong>
 						                </p>
@@ -576,11 +576,13 @@ function validatechecks(){
 }
 function p1(){
 	var selection=document.getElementById("project1").value;
-	var ind_id = document.getElementById("project1req").data-project1;
-	if(selection=="" || ind_id.toString().length==0){
+	var e = document.getElementById("project1");
+	var value = document.getElementById(e.options[e.selectedIndex].id).dataset.project1;
+	var requirements = value;
+	if(selection=="" || requirements.length==0){
 	$("#response1").empty();
 	}else{
-	var requirements = ind_id.toString().split("\n");
+	requirements = requirements.toString().split("\n");
 	$("#response1").empty();
 	for( i =0;i<requirements.length;i++){
 	$('#response1').append("<input type=checkbox class=p1req >"+requirements[i]);
@@ -589,11 +591,13 @@ function p1(){
 }
 function p2(){
 	var selection=document.getElementById("project2").value;
-	var ind_id = document.getElementById("project2req").data-project2;
-	if(selection=="0"|| ind_id.toString().length==0){
+	var e = document.getElementById("project2");
+	var value = document.getElementById(e.options[e.selectedIndex].id).dataset.project2;
+	var requirements = value;
+	if(selection=="" || requirements.length==0){
 	$("#response2").empty();
 	}else{
-	var requirements = ind_id.toString().split("\n");
+	requirements = requirements.toString().split("\n");
 	$("#response2").empty();
 	for( i =0;i<requirements.length;i++){
 	$('#response2').append("<input type=checkbox class=p2req >"+requirements[i]);
@@ -602,11 +606,13 @@ function p2(){
 }
 function p3(){
 	var selection=document.getElementById("project3").value;
-	var ind_id = document.getElementById("project3req").data-project3;
-	if(selection=="0"|| ind_id.toString().length==0){
+	var e = document.getElementById("project3");
+	var value = document.getElementById(e.options[e.selectedIndex].id).dataset.project3;
+	var requirements = value;
+	if(selection=="" || requirements.length==0){
 	$("#response3").empty();
 	}else{
-	var requirements = ind_id.toString().split("\n");
+	requirements = requirements.toString().split("\n");
 	$("#response3").empty();
 	for( i =0;i<requirements.length;i++){
 	$('#response3').append("<input type=checkbox class=p3req >"+requirements[i]);
@@ -615,11 +621,13 @@ function p3(){
 }
 function p4(){
 	var selection=document.getElementById("project4").value;
-	var ind_id = document.getElementById("project4req").data-project4;
-	if(selection=="0"|| ind_id.toString().length==0){
+	var e = document.getElementById("project4");
+	var value = document.getElementById(e.options[e.selectedIndex].id).dataset.project4;
+	var requirements = value;
+	if(selection=="" || requirements.length==0){
 	$("#response4").empty();
 	}else{
-	var requirements = ind_id.toString().split("\n");
+	requirements = requirements.toString().split("\n");
 	$("#response4").empty();
 	for( i =0;i<requirements.length;i++){
 	$('#response4').append("<input type=checkbox class=p4req >"+requirements[i]);
@@ -628,11 +636,13 @@ function p4(){
 }
 function p5(){
 	var selection=document.getElementById("project5").value;
-	var ind_id = document.getElementById("project5req").data-project4;
-	if(selection=="0"|| ind_id.toString().length==0){
+	var e = document.getElementById("project5");
+	var value = document.getElementById(e.options[e.selectedIndex].id).dataset.project5;
+	var requirements = value;
+	if(selection=="" || requirements.length==0){
 	$("#response5").empty();
 	}else{
-	var requirements = ind_id.toString().split("\n");
+	requirements = requirements.toString().split("\n");
 	$("#response5").empty();
 	for( i =0;i<requirements.length;i++){
 	$('#response5').append("<input type=checkbox class=p5req >"+requirements[i]);

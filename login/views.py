@@ -153,6 +153,21 @@ def projects_assign(request):
 	students = Student.objects.all()
 	removep=[]
 	numberofst={}
+	for pro in projects:
+		if(len(str(pro.desired_student))>1):
+			project_id=pro.id
+			studentname=pro.desired_student
+			student=Student.objects.all().filter(primary_first_name=studentname,project1=pro.id,assigned=False, gpa__gte =3)|Student.objects.all().filter(primary_first_name=studentname,project2=pro.id,assigned=False, gpa__gte =3)|Student.objects.all().filter(primary_first_name=studentname,project3=pro.id,assigned=False, gpa__gte =3)|Student.objects.all().filter(primary_first_name=studentname,project4=pro.id,assigned=False, gpa__gte =3)|Student.objects.all().filter(primary_first_name=studentname,project5=pro.id,assigned=False, gpa__gte =3)
+			if(len(student)>0):
+				student = Student.objects.all().filter(pk=student[0].id)
+				student.update(assigned=True)
+				student = Student.objects.get(pk=student[0].id)
+				project = Project.objects.filter(pk=pro.id)
+				project.update(assigned=True)
+				project.update(assigned_student=student)
+				projects.exclude(app_title=pro.app_title)
+				continue	
+			
 	for project in projects:
 		hasStudents="False"
 		counts=0
@@ -203,7 +218,7 @@ def projects_assign(request):
 				dictofstuds[fs.id]=fs.gpa
 			for fs in third_choicegpa:
 				dictofstuds[fs.id]=fs.gpa
-			d_s=OrderedDict()
+			d_s=collections.OrderedDict()
 			for w in sorted(dictofstuds, key=dictofstuds.get, reverse=True):
 				d_s[w]=dictofstuds[w]
 			new_dict = []
@@ -300,7 +315,7 @@ def projects_assign(request):
 				dictofstuds[fs.id]=fs.gpa
 			for fs in fifth_choicegpa:
 				dictofstuds[fs.id]=fs.gpa
-			d_s=OrderedDict()
+			d_s=collections.OrderedDict()
 			for w in sorted(dictofstuds, key=dictofstuds.get, reverse=True):
 				d_s[w]=dictofstuds[w]
 			new_dict = []
@@ -402,7 +417,7 @@ def projects_assign(request):
 			project = Project.objects.filter(pk=project_id)
 			project.update(assigned=True)
 			project.update(assigned_student=student)
-	return render(request, 'dlap_admin/suc.html',)
+	return render(request, 'dlap_admin/suc.html')
 #	return render(request, 'dlap_admin/projects_mgmt.html', {'projects': projects})
 
 
