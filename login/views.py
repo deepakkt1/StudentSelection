@@ -127,17 +127,17 @@ def download_matrix(request):
 		wr.writerow(list1)
 		for pro in projects:
 			li=[]
-			li.append(pro.app_title)
-			li.append(pro.primary_first_name)
-			li.append(pro.primary_last_name)
-			li.append(pro.primary_faculty_dept)
-			li.append(pro.assigned)
+			li.append(pro.app_title.encode('ascii', 'ignore').decode('ascii'))
+			li.append(pro.primary_first_name.encode('ascii', 'ignore').decode('ascii'))
+			li.append(pro.primary_last_name.encode('ascii', 'ignore').decode('ascii'))
+			li.append(pro.primary_faculty_dept.encode('ascii', 'ignore').decode('ascii'))
+			li.append(str(pro.assigned).encode('ascii', 'ignore').decode('ascii'))
 			if(pro.assigned == False):
-				li.append("")
-				li.append("")
+				li.append("".encode('ascii', 'ignore').decode('ascii'))
+				li.append("".encode('ascii', 'ignore').decode('ascii'))
 			else:
-				li.append(pro.assigned_student.primary_first_name)
-				li.append(pro.assigned_student.primary_last_name)
+				li.append(pro.assigned_student.primary_first_name.encode('ascii', 'ignore').decode('ascii'))
+				li.append(pro.assigned_student.primary_last_name.encode('ascii', 'ignore').decode('ascii'))
 			wr.writerow(li)	
 	filename = "assignedmatrix.xls" # Select your file here.                                
 	wrapper = FileWrapper(file(filename))
