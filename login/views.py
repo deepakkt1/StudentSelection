@@ -122,7 +122,7 @@ def home(request):
 def download_matrix(request):
 	list1=["Project Title","Faculty First Name","Faculty Last Name","Faculty Department","Assignment Status","Assigned Student First Name","Assigned Student Last Name"]
 	projects=Project.objects.all()
-	with open('assignedmatrix.xls','wb') as myfile:
+	with open('assignedmatrix.xls','w') as myfile:
 		wr=csv.writer(myfile, quoting=csv.QUOTE_ALL)
 		wr.writerow(list1)
 		for pro in projects:
