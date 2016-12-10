@@ -13,6 +13,7 @@ from django.template import RequestContext
 from submit.models import Project
 from student.models import Student
 import logging
+#import xlsxwriter
 from django.db.models import Max
 import collections
 import csv
@@ -121,7 +122,13 @@ def home(request):
 @csrf_exempt
 def download_matrix(request):
 	list1=["Project Title","Faculty First Name","Faculty Last Name","Faculty Department","Assignment Status","Assigned Student First Name","Assigned Student Last Name"]
+	#workbook = xlsxwriter.Workbook('1assignedmatrix.xlsx')
+	#worksheet = workbook.add_worksheet()
 	projects=Project.objects.all()
+	row = 0
+	col = 0
+	#worksheet.write_row(row, col,  tuple(list1))
+	#row += 1
 	with open('assignedmatrix.xlsx','w') as myfile:
 		wr=csv.writer(myfile, quoting=csv.QUOTE_ALL)
 		wr.writerow(list1)
@@ -138,12 +145,15 @@ def download_matrix(request):
 			else:
 				li.append(pro.assigned_student.primary_first_name.encode('ascii', 'ignore').decode('ascii'))
 				li.append(pro.assigned_student.primary_last_name.encode('ascii', 'ignore').decode('ascii'))
+			#worksheet.write_row(row, col,  tuple(li))
+			#row += 1			
 			wr.writerow(li)	
-	filename = "assignedmatrix.xls" # Select your file here.                                
+	#workbook.close()
+	filename = "assignedmatrix.xlsx" # Select your file here.                                
 	wrapper = FileWrapper(file(filename))
 	response = HttpResponse(wrapper, content_type='text/plain')
 	response['Content-Length'] = os.path.getsize(filename)
-        response['Content-Disposition'] = 'attachment; filename=assignedmatrix.xls'
+        response['Content-Disposition'] = 'attachment; filename=assignedmatrix.xlsx'
 	return response
 	#return render(request, 'dlap_admin/projects_mgmt.html', {'projects': projects})
 @login_required
