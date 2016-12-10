@@ -13,7 +13,8 @@ from django.template import RequestContext
 from submit.models import Project
 from student.models import Student
 import logging
-#import xlsxwriter
+import xlsxwriter
+#from xlsxwriter.workbook import Workbook
 from django.db.models import Max
 import collections
 import csv
@@ -122,38 +123,38 @@ def home(request):
 @csrf_exempt
 def download_matrix(request):
 	list1=["Project Title","Faculty First Name","Faculty Last Name","Faculty Department","Assignment Status","Assigned Student First Name","Assigned Student Last Name"]
-	#workbook = xlsxwriter.Workbook('1assignedmatrix.xlsx')
-	#worksheet = workbook.add_worksheet()
+	workbook = xlsxwriter.Workbook('1assignedmatrix.xlsx')
+	worksheet = workbook.add_worksheet()
 	projects=Project.objects.all()
 	row = 0
 	col = 0
-	#worksheet.write_row(row, col,  tuple(list1))
-	#row += 1
-	with open('assignedmatrix.xlsx','w') as myfile:
-		wr=csv.writer(myfile, quoting=csv.QUOTE_ALL)
-		wr.writerow(list1)
-		for pro in projects:
-			li=[]
-			li.append(pro.app_title.encode('ascii', 'ignore').decode('ascii'))
-			li.append(pro.primary_first_name.encode('ascii', 'ignore').decode('ascii'))
-			li.append(pro.primary_last_name.encode('ascii', 'ignore').decode('ascii'))
-			li.append(pro.primary_faculty_dept.encode('ascii', 'ignore').decode('ascii'))
-			li.append(str(pro.assigned).encode('ascii', 'ignore').decode('ascii'))
-			if(pro.assigned == False):
-				li.append("".encode('ascii', 'ignore').decode('ascii'))
-				li.append("".encode('ascii', 'ignore').decode('ascii'))
-			else:
-				li.append(pro.assigned_student.primary_first_name.encode('ascii', 'ignore').decode('ascii'))
-				li.append(pro.assigned_student.primary_last_name.encode('ascii', 'ignore').decode('ascii'))
-			#worksheet.write_row(row, col,  tuple(li))
-			#row += 1			
-			wr.writerow(li)	
-	#workbook.close()
-	filename = "assignedmatrix.xlsx" # Select your file here.                                
+	worksheet.write_row(row, col,  tuple(list1))
+	row += 1
+	#with open('assignedmatrix.xlsx','w') as myfile:
+	#	wr=csv.writer(myfile, quoting=csv.QUOTE_ALL)
+	#	wr.writerow(list1)
+	for pro in projects:
+		li=[]
+		li.append(pro.app_title.encode('ascii', 'ignore').decode('ascii'))
+		li.append(pro.primary_first_name.encode('ascii', 'ignore').decode('ascii'))
+		li.append(pro.primary_last_name.encode('ascii', 'ignore').decode('ascii'))
+		li.append(pro.primary_faculty_dept.encode('ascii', 'ignore').decode('ascii'))
+		li.append(str(pro.assigned).encode('ascii', 'ignore').decode('ascii'))
+		if(pro.assigned == False):
+			li.append("".encode('ascii', 'ignore').decode('ascii'))
+			li.append("".encode('ascii', 'ignore').decode('ascii'))
+		else:
+			li.append(pro.assigned_student.primary_first_name.encode('ascii', 'ignore').decode('ascii'))
+			li.append(pro.assigned_student.primary_last_name.encode('ascii', 'ignore').decode('ascii'))
+		worksheet.write_row(row, col,  tuple(li))
+		row += 1			
+		#wr.writerow(li)	
+	workbook.close()
+	filename = "1assignedmatrix.xlsx" # Select your file here.                                
 	wrapper = FileWrapper(file(filename))
 	response = HttpResponse(wrapper, content_type='text/plain')
 	response['Content-Length'] = os.path.getsize(filename)
-        response['Content-Disposition'] = 'attachment; filename=assignedmatrix.xlsx'
+        response['Content-Disposition'] = 'attachment; filename=1assignedmatrix.xlsx'
 	return response
 	#return render(request, 'dlap_admin/projects_mgmt.html', {'projects': projects})
 @login_required
